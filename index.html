@@ -1,0 +1,1224 @@
+
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muzej Starinskih Kočij | Grad Vinica</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6B4C35;
+            --secondary: #A24936;
+            --accent: #D7B377;
+            --light: #F5F5F5;
+            --dark: #2D2D2D;
+            --text: #333333;
+            --light-text: #666666;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+        }
+        
+        p {
+            line-height: 1.8;
+        }
+        
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://cdn1.genspark.ai/user-upload-image/5_generated/98f832a2-dbe5-43f4-ae42-99c0cd2a9f56_wm');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .attraction-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .carriage-img {
+            transition: transform 0.5s ease;
+            max-height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .carriage-img:hover {
+            transform: scale(1.03);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(107, 76, 53, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(215, 179, 119, 0.3);
+        }
+        
+        .decorative-line {
+            height: 2px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .price-tag {
+            position: relative;
+            background-color: var(--secondary);
+            color: white;
+            display: inline-block;
+            padding: 10px 20px;
+            font-weight: bold;
+            transform: rotate(-2deg);
+        }
+        
+        .price-tag::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 0px solid transparent;
+            border-top: 10px solid var(--secondary);
+        }
+        
+        /* Custom scroll bar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+        
+        /* Nav scroll effect */
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .artistic-border {
+            position: relative;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        .artistic-border::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--accent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-container.left {
+            left: 0;
+        }
+        
+        .timeline-container.right {
+            left: 50%;
+        }
+        
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: var(--light);
+            border: 4px solid var(--accent);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-container.left::after {
+            right: -12px;
+        }
+        
+        .timeline-container.right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .accordion-header {
+            padding: 15px;
+            background-color: var(--light);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 6px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .accordion-header:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: white;
+            border-radius: 0 0 6px 6px;
+            margin-bottom: 10px;
+        }
+        
+        .accordion-content.active {
+            max-height: 500px;
+        }
+        
+        .info-card {
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+            margin: 20px 0;
+            background-color: rgba(215, 179, 119, 0.1);
+            padding: 15px;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .highlight-box {
+            background-color: var(--accent);
+            color: var(--dark);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-circle:hover {
+            transform: scale(1.05);
+        }
+        
+        .region-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .region-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .region-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+        }
+        
+        /* Caption overlay for images */
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .img-caption {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 15px;
+            transition: bottom 0.3s ease;
+        }
+        
+        .img-container:hover .img-caption {
+            bottom: 0;
+        }
+        
+        /* Video container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Fix for white text on white background issues */
+        .footer-text {
+            color: #f5f5f5;
+        }
+        
+        .dark-section {
+            background-color: #2D2D2D;
+        }
+        
+        .dark-section h2, 
+        .dark-section h3 {
+            color: #f5f5f5;
+        }
+        
+        .opening-hours-text {
+            color: #333333;
+            font-weight: 500;
+        }
+        
+        .white-section-text {
+            color: #333333;
+        }
+        
+        .high-contrast-text {
+            color: #222222;
+            font-weight: 600;
+        }
+        
+        .footer-links a {
+            color: #f5f5f5;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Improved contrast for footer section */
+        .footer-section {
+            background-color: #222222;
+        }
+        
+        .footer-heading {
+            color: #ffffff;
+            font-weight: 700;
+        }
+        
+        .footer-content {
+            color: #e0e0e0;
+        }
+        
+        .footer-highlight {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section flex flex-col items-center justify-center text-center px-4">
+        <div class="container mx-auto" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 animate-fadeInUp" style="animation-delay: 0.2s;">Muzej Starinskih Kočij</h1>
+            <h2 class="text-xl md:text-3xl text-white mb-8 animate-fadeInUp" style="animation-delay: 0.4s;">Grad Vinica | Slovenija</h2>
+            <p class="text-white text-lg md:text-xl mb-10 max-w-3xl mx-auto animate-fadeInUp" style="animation-delay: 0.6s;">Doživite čarobnost zgodovine in umetnosti na edinstvenem gradu s starinskimi kočijami in naravnimi lepotami regije Bela Krajina.</p>
+            <a href="#about" class="btn-primary animate-fadeInUp" style="animation-delay: 0.8s;">Odkrijte Več</a>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="py-20 px-4">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10" data-aos="fade-right">
+                    <h2 class="text-4xl font-bold mb-6 section-title">Dobrodošli na Gradu Vinica</h2>
+                    <p class="text-lg mb-6">Na slikovitem gradu Vinica v jugovzhodni Sloveniji, v srcu regije Bela Krajina, vas vabimo v osupljiv svet starinskih kočij in kulturne dediščine. Naš muzej hrani več kot 20 edinstvenih lesenih kočij, ki pričajo o bogatem zgodovinskem izročilu naših krajev.</p>
+                    <p class="text-lg mb-6">Vsaka kočija pripoveduje svojo zgodbo – od elegantnih potovalnih kočij plemstva do praktičnih kmečkih vozov. Poleg zbirke kočij vas na našem posestvu čakajo tudi številne druge znamenitosti in doživetja.</p>
+                    
+                    <div class="info-card mb-6">
+                        <h3 class="font-bold text-xl mb-2">Zgodovinska vrednost</h3>
+                        <p>Grad Vinica je zgodovinski biser iz 12. stoletja, ki se ponaša z bogato zgodovino in čudovito lokacijo nad reko Kolpo, ki predstavlja naravno mejo med Slovenijo in Hrvaško. Leta 2015 je bil grad obnovljen v turistični objekt, kjer lahko obiskovalci uživajo v edinstvenem srednjeveškem ambientu.</p>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3 class="font-bold text-xl mb-2">Posebnosti našega muzeja</h3>
+                        <ul class="list-disc ml-5 space-y-2">
+                            <li>Edinstvena zbirka več kot 20 starinskih lesenih kočij</li>
+                            <li>Avtentično grajsko okolje z več kot 900-letno zgodovino</li>
+                            <li>Spektakularen razgled na reko Kolpo in vinorodno pokrajino</li>
+                            <li>Kombinacija kulturne dediščine in naravnih lepot</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
+                            <div class="text-4xl text-accent mb-4">
+                                <i class="fas fa-horse-head"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">20+ Kočij</h3>
+                            <p>Edinstvena zbirka starinskih lesenih kočij različnih zgodovinskih obdobij</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
+                            <div class="text-4xl text-accent mb-4">
+                                <i class="fas fa-wine-glass-alt"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Vinska degustacija</h3>
+                            <p>Poskusite izbrane lokalne sorte vin iz regije Bela Krajina</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
+                            <div class="text-4xl text-accent mb-4">
+                                <i class="fas fa-paw"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Mini živalski vrt</h3>
+                            <p>Spoznajte prijazne živali našega posestva v idiličnem okolju</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg card-hover">
+                            <div class="text-4xl text-accent mb-4">
+                                <i class="fas fa-tree"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Naravne lepote</h3>
+                            <p>Sprehajalne poti po čudoviti okolici gradu in ob reki Kolpi</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 region-card" data-aos="zoom-in">
+                        <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/98f832a2-dbe5-43f4-ae42-99c0cd2a9f56_wm" alt="Bela Krajina pokrajina" class="w-full h-auto">
+                        <div class="region-card-content">
+                            <h3 class="text-xl font-bold mb-2">Regija Bela Krajina</h3>
+                            <p>Odkrijte očarljivo regijo na jugovzhodu Slovenije s slikovitimi vinogradi in tradicijo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Region Bela Krajina Section -->
+    <div class="py-20 px-4 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center section-title mx-auto" data-aos="fade-up">Odkrijte Čare Bele Krajine</h2>
+            
+            <div class="flex flex-col md:flex-row items-center mb-16">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8" data-aos="fade-right">
+                    <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/0f92841a-f8d1-4476-9f74-260a0263840a_wm" alt="Reka Kolpa" class="w-full h-auto rounded-lg shadow-lg">
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <h3 class="text-3xl font-bold mb-4">Bela Krajina - Skrit Biser Slovenije</h3>
+                    <p class="mb-4">Bela Krajina je tradicionalna regija v jugovzhodni Sloveniji na meji s Hrvaško. Zaradi svoje majhnosti se pogosto šteje za podenoto širše dolenjske regije, vendar z raznolikimi kulturnimi, jezikovnimi in zgodovinskimi značilnostmi.</p>
+                    <p class="mb-4">Regija je znana po beli barvi v svojih edinstvenih gozdovih iz belih brez in tradicionalnih belih nošah, ki navdušujejo obiskovalce s svojo lepoto. Gričevnata pokrajina očara že na prvi pogled s svojimi zelenimi brezovimi gozdički, bleščečo reko Kolpo, vinogradi z idličnimi kočami in potmi, ki vas vodijo do zanimivih krajev z fascinantno zgodovino.</p>
+                    <p class="mb-4">Bela Krajina je ena najbolj pristnih regij v Sloveniji, kjer lahko doživite tradicionalno slovensko kulturo, uživate v edinstveni kulinariki in odkrivate neokrnjeno naravo.</p>
+                    <a href="#" class="btn-secondary mt-4">Več o regiji</a>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <div class="bg-light p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl text-secondary mb-4">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Bogata vinska tradicija</h3>
+                    <p class="mb-4">Regija ima bogato zgodovino v vinu. Najbolje poznane sorte iz te regije so rdeča Metliška Črnina in bela Belokranjsko Belo, ki jih strežejo z vsako jedjo in pogosto mešajo z gazirano vodo.</p>
+                    <p>Obiščite številne lokalne vinogradnike in poskusite pristne okuse belokranjskih vin.</p>
+                </div>
+                
+                <div class="bg-light p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl text-secondary mb-4">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Kulinarične posebnosti</h3>
+                    <p class="mb-4">Belokranjska pogača je vrsta fokače s kumino, ki je posuta po vrhu. Strežejo jo ob skoraj vsaki jedi, posebej pri zajtrku! Poskusite tudi belokranjsko povitico, belokranjski nadev in druge regionalne specialitete.</p>
+                    <p>Tradicionalna hrana regije je preprosta, a izjemno okusna in pripravljena iz svežih lokalnih sestavin.</p>
+                </div>
+                
+                <div class="bg-light p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl text-secondary mb-4">
+                        <i class="fas fa-swimmer"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Reka Kolpa</h3>
+                    <p class="mb-4">Reka Kolpa je ena najčistejših in presenetljivo najtoplejših rek v Sloveniji. Predstavlja naravno mejo s Hrvaško in ponuja odlične možnosti za plavanje, veslanje in druge vodne aktivnosti v poletnih mesecih.</p>
+                    <p>Na območju gradu Vinica lahko uživate v čudovitih pogledih na reko in se sprostite ob njenem šumenju.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History of Vinica Castle Timeline -->
+    <div class="py-20 px-4 bg-light">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center section-title mx-auto" data-aos="fade-up">Zgodovina Gradu Vinica</h2>
+            
+            <div class="timeline" data-aos="fade-up">
+                <div class="timeline-container left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3 class="text-2xl font-bold mb-2">12. stoletje</h3>
+                        <p>Prve omembe trdnjave na območju današnjega gradu Vinica. Prvotna utrdba je bila zgrajena za obrambo pred vdori z juga.</p>
+                    </div>
+                </div>
+                <div class="timeline-container right" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3 class="text-2xl font-bold mb-2">15.-16. stoletje</h3>
+                        <p>Grad je igral pomembno vlogo pri obrambi pred turškimi vpadi. V tem obdobju je bil večkrat obnovljen in utrjen.</p>
+                    </div>
+                </div>
+                <div class="timeline-container left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3 class="text-2xl font-bold mb-2">18. stoletje</h3>
+                        <p>Grad je dobil današnjo podobo z baročnimi elementi. Postal je središče družabnega življenja lokalnega plemstva.</p>
+                    </div>
+                </div>
+                <div class="timeline-container right" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3 class="text-2xl font-bold mb-2">20. stoletje</h3>
+                        <p>Grad je zamenjal več lastnikov in doživel različne namembnosti. V določenih obdobjih je propadal in čakal na boljše čase.</p>
+                    </div>
+                </div>
+                <div class="timeline-container left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3 class="text-2xl font-bold mb-2">2015</h3>
+                        <p>Kompletna obnova gradu v turistični objekt. Grad je bil preoblikovan v ekskluziven turistični kompleks s tremi prestižnimi apartmaji.</p>
+                    </div>
+                </div>
+                <div class="timeline-container right" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3 class="text-2xl font-bold mb-2">Danes</h3>
+                        <p>Grad Vinica je priljubljena turistična destinacija, ki združuje zgodovinsko vrednost, naravne lepote in sodobno turistično ponudbo. Muzej starinskih kočij predstavlja edinstveno atrakcijo za obiskovalce z vsega sveta.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <h3 class="text-2xl font-bold mb-4">Legenda o gradu Vinica</h3>
+                <p class="max-w-3xl mx-auto mb-6">Po ljudskem izročilu se je okoli gradu Vinica spletla zanimiva legenda o skritih zakladih in skrivnih hodnikih. Govori se, da pod gradom obstajajo tajni prehodi, ki vodijo do reke Kolpe, in da so nekdanji lastniki v njih skrili svoje dragocenosti pred napadalci. Nekateri domačini trdijo, da se na tihe noči še vedno sliši škripanje kočij in konjski topot, ki prihaja iz okolice gradu.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carriages Collection -->
+    <div class="py-20 px-4 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">Naša zbirka kočij</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="artistic-border p-6" data-aos="fade-up">
+                    <div class="img-container">
+                        <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/5ac59206-50ed-487d-b5bd-8b7450453010_wm" alt="Lesena kočija" class="w-full h-auto mb-4 carriage-img">
+                        <div class="img-caption">
+                            <h4 class="font-bold">Starinska potovalna kočija</h4>
+                            <p class="text-sm">Izdelana v poznem 19. stoletju za plemiške družine</p>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Klasična potovalna kočija</h3>
+                    <p>Elegantna lesena kočija iz 19. stoletja, namenjena potovanju plemstva med podeželskimi posestvi. Odlikuje jo izjemna obrtniška izdelava in edinstveni leseni detajli. Ta kočija je bila včasih simbol bogastva in prestiža svojih lastnikov.</p>
+                </div>
+                
+                <div class="artistic-border p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="img-container">
+                        <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/bf4e1ebd-3489-47e2-962e-1bf595acde6a_wm" alt="Zbirka lesenih kočij" class="w-full h-auto mb-4 carriage-img">
+                        <div class="img-caption">
+                            <h4 class="font-bold">Kmečke kočije in vozovi</h4>
+                            <p class="text-sm">Tradicionalna transportna sredstva slovenskega podeželja</p>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Zbirka kmečkih vozov</h3>
+                    <p>Predstavljamo različne vrste tradicionalnih lesenih vozov, ki so jih uporabljali za prevoz pridelkov in blaga. Vsak voz prikazuje specifične značilnosti določenega obdobja slovenskega podeželja in priča o iznajdljivosti kmečkega prebivalstva pri premagovanju vsakodnevnih izzivov.</p>
+                </div>
+                
+                <div class="artistic-border p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="img-container">
+                        <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/eee5c900-f525-434f-a724-93c3941ec993_wm" alt="Lesena kočija na posestvu" class="w-full h-auto mb-4 carriage-img">
+                        <div class="img-caption">
+                            <h4 class="font-bold">Vinska kočija v vinogradu</h4>
+                            <p class="text-sm">Specialno vozilo za prevoz vinskih sodov</p>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Vinska kočija</h3>
+                    <p>Posebna kočija, izdelana za prevoz vina in vinskih sodov. Edinstvena konstrukcija je bila zasnovana za stabilnost in varno prevažanje dragocenih vin po razgibanih slovenskih poteh. Te kočije so bile ključnega pomena za uspešno vinogradništvo in trgovino z vinom v regiji Bela Krajina.</p>
+                </div>
+                
+                <div class="artistic-border p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="img-container">
+                        <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/0dcd512b-87a8-43a2-a718-99e6dcd904d9_wm" alt="Tradicionalna lesena kočija" class="w-full h-auto mb-4 carriage-img">
+                        <div class="img-caption">
+                            <h4 class="font-bold">Tradicionalna kočija z velikimi kolesi</h4>
+                            <p class="text-sm">Robustno vozilo za vse terene</p>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Tradicionalna kmečka kočija</h3>
+                    <p>Robustna lesena kočija z velikimi kolesi, ki je omogočala vožnjo po zahtevnem terenu slovenskega podeželja. Takšne kočije so bile neprecenljive za kmečko prebivalstvo, saj so jim omogočale prevoz ljudi in dobrin ne glede na stanje poti ali vremenske razmere.</p>
+                </div>
+                
+                <div class="artistic-border p-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="img-container">
+                        <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/b16f6ff9-6d4a-4cd8-99d5-b2cbee7a94ed_wm" alt="Elegantna ceremonialna kočija" class="w-full h-auto mb-4 carriage-img">
+                        <div class="img-caption">
+                            <h4 class="font-bold">Ceremonialna kočija</h4>
+                            <p class="text-sm">Uporabljena za posebne priložnosti in praznovanja</p>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Elegantna ceremonialna kočija</h3>
+                    <p>Razkošna kočija, namenjena posebnim priložnostim, kot so poroke, krsti in druga slavja. Izjemno okrašena s finimi lesenimi detajli in umetelno izdelanimi okraski, ta kočija predstavlja vrhunec obrtniške spretnosti svojega časa in kulturno bogastvo regije.</p>
+                </div>
+                
+                <div class="artistic-border p-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="img-container">
+                        <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/1a86a10d-7518-427f-b12d-62e59f64d907_wm" alt="Srednjeveški tovorni voz" class="w-full h-auto mb-4 carriage-img">
+                        <div class="img-caption">
+                            <h4 class="font-bold">Srednjeveški tovorni voz</h4>
+                            <p class="text-sm">Zgodovinsko vozilo za transport težkih tovorov</p>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Srednjeveški tovorni voz</h3>
+                    <p>Zgodovinski voz iz srednjeveške dobe, namenjen prevozu težkih tovorov. Konstruiran iz masivnega lesa z velikimi kolesi, je bil ta voz nepogrešljiv za gradnjo, trgovino in kmetijstvo. Njegova robustna konstrukcija ponazarja tedanjo inženirsko iznajdljivost in prilagodljivost lokalnim potrebam.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center" data-aos="fade-up">
+                <p class="max-w-3xl mx-auto mb-8 text-lg">Naša edinstvena zbirka starinskih kočij prikazuje razvoj transporta skozi stoletja in poudarja kulturno dediščino regije Bela Krajina. Vsaka kočija ima svojo zgodbo in predstavlja pomemben del naše skupne zgodovine.</p>
+                <a href="#attractions" class="btn-primary">Odkrijte več znamenitosti</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attractions -->
+    <div id="attractions" class="py-20 px-4">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center section-title mx-auto" data-aos="fade-up">Doživetja na Gradu Vinica</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+                <div class="attraction-card overflow-hidden" data-aos="fade-up">
+                    <div class="h-48 bg-secondary flex items-center justify-center">
+                        <i class="fas fa-paw text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Mini živalski vrt</h3>
+                        <p class="mb-4">Spoznajte naše prijazne živali v idiličnem okolju grajskega posestva. Najmlajši obiskovalci bodo uživali v družbi domačih in eksotičnih živali, ki bivajo v našem mini živalskem vrtu.</p>
+                        <div class="mb-4">
+                            <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/bf4e1ebd-3489-47e2-962e-1bf595acde6a_wm" alt="Mini živalski vrt" class="w-full h-auto rounded-lg mb-4">
+                        </div>
+                        <ul class="ml-5 list-disc mb-4">
+                            <li>Interaktivno hranjenje živali pod vodstvom oskrbnikov</li>
+                            <li>Izobraževalne predstavitve o lokalnih in eksotičnih živalskih vrstah</li>
+                            <li>Fotografiranje z živalmi v naravnem okolju</li>
+                            <li>Priložnost za stik z različnimi domačimi in divjimi živalmi</li>
+                        </ul>
+                        <p class="text-sm italic">Primerno za obiskovalce vseh starosti, še posebej za družine z otroki.</p>
+                    </div>
+                </div>
+                
+                <div class="attraction-card overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-primary flex items-center justify-center">
+                        <i class="fas fa-wine-glass-alt text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Degustacija vin</h3>
+                        <p class="mb-4">Odkrijte bogate okuse lokalnih vin v pristnem okolju naše grajske kleti. Naši sommelierji vam bodo predstavili izbrana vina iz regije Bela Krajina, znane po svoji bogati vinski tradiciji.</p>
+                        <div class="mb-4">
+                            <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/98f832a2-dbe5-43f4-ae42-99c0cd2a9f56_wm" alt="Vinska degustacija" class="w-full h-auto rounded-lg mb-4">
+                        </div>
+                        <ul class="ml-5 list-disc mb-4">
+                            <li>Vodene degustacije vin lokalnih vinarjev in naše lastne produkcije</li>
+                            <li>Tradicionalne jedi regije Bela Krajina v kombinaciji z izbranimi vini</li>
+                            <li>Zanimive zgodbe o vinski tradiciji in zgodovini regije</li>
+                            <li>Možnost nakupa ekskluzivnih lokalnih vin</li>
+                        </ul>
+                        <p class="text-sm italic">Za ljubitelje vina in tiste, ki želijo spoznati lokalno kulturo skozi kulinariko.</p>
+                    </div>
+                </div>
+                
+                <div class="attraction-card overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-accent flex items-center justify-center">
+                        <i class="fas fa-hiking text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Sprehajalne poti</h3>
+                        <p class="mb-4">Raziskujte očarljivo okolico gradu po urejenih sprehajalnih poteh. Uživajte v neokrnjeni naravi, svežem zraku in spektakularnih razgledih na reko Kolpo in vinorodno pokrajino Bele Krajine.</p>
+                        <div class="mb-4">
+                            <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/0f92841a-f8d1-4476-9f74-260a0263840a_wm" alt="Sprehajalne poti" class="w-full h-auto rounded-lg mb-4">
+                        </div>
+                        <ul class="ml-5 list-disc mb-4">
+                            <li>Označene poti različnih težavnosti in dolžin za vse vrste obiskovalcev</li>
+                            <li>Razgledne točke s panoramskimi pogledi na okoliško pokrajino</li>
+                            <li>Urejena piknik območja ob poti za sprostitev v naravi</li>
+                            <li>Možnost organiziranih vodenih pohodov z lokalnim vodnikom</li>
+                        </ul>
+                        <p class="text-sm italic">Popoln oddih za ljubitelje narave in aktivnega preživljanja prostega časa.</p>
+                    </div>
+                </div>
+                
+                <div class="attraction-card overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 bg-dark flex items-center justify-center">
+                        <i class="fas fa-church text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Grajska kapela</h3>
+                        <p class="mb-4">Občudujte zgodovinsko kapelo iz 16. stoletja z izjemnimi freskami in arhitekturo, ki priča o bogati zgodovini gradu Vinica in duhovnem življenju njegovih prebivalcev skozi stoletja.</p>
+                        <div class="mb-4">
+                            <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/eee5c900-f525-434f-a724-93c3941ec993_wm" alt="Grajska kapela" class="w-full h-auto rounded-lg mb-4">
+                        </div>
+                        <ul class="ml-5 list-disc mb-4">
+                            <li>Edinstvene zgodovinske freske z verskimi in posvetnimi motivi</li>
+                            <li>Originalni arhitekturni elementi iz različnih zgodovinskih obdobij</li>
+                            <li>Možnost organizacije porok in drugih verskih obredov v avtentičnem srednjeveškem ambientu</li>
+                            <li>Vodeni ogledi z razlago zgodovinskega in umetniškega pomena kapele</li>
+                        </ul>
+                        <p class="text-sm italic">Prostor tišine in zgodovinske refleksije za vse ljubitelje umetnosti in zgodovine.</p>
+                    </div>
+                </div>
+                
+                <div class="attraction-card overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <div class="h-48 bg-secondary flex items-center justify-center">
+                        <i class="fas fa-utensils text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Kulinarična ponudba</h3>
+                        <p class="mb-4">Razvajajte svoje brbončice z lokalnimi specialitetami in tradicionalnimi jedmi, pripravljenimi iz svežih sestavin z našega posestva in okoliških kmetij. Doživite pristne okuse Bele Krajine v izjemnem ambientu gradu Vinica.</p>
+                        <div class="mb-4">
+                            <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/0dcd512b-87a8-43a2-a718-99e6dcd904d9_wm" alt="Kulinarika" class="w-full h-auto rounded-lg mb-4">
+                        </div>
+                        <ul class="ml-5 list-disc mb-4">
+                            <li>Sezonski meni lokalnih specialitet, prilagojen letnim časom in tradiciji</li>
+                            <li>Grajska restavracija s čudovitim pogledom na reko Kolpo in okoliško pokrajino</li>
+                            <li>Domače sladice, pripravljene po tradicionalnih receptih, in lokalne pijače</li>
+                            <li>Možnost organizacije kulinaričnih delavnic in učenja priprave tradicionalnih jedi</li>
+                        </ul>
+                        <p class="text-sm italic">Kulinarično doživetje, ki združuje tradicijo z modernimi pristopi.</p>
+                    </div>
+                </div>
+                
+                <div class="attraction-card overflow-hidden" data-aos="fade-up" data-aos-delay="500">
+                    <div class="h-48 bg-primary flex items-center justify-center">
+                        <i class="fas fa-landmark text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Ogled gradu</h3>
+                        <p class="mb-4">Raziskujte skrivnosti starinskega gradu Vinica s strokovnim vodenim ogledom. Spoznajte fascinantno zgodovino in skrivnosti, ki jih skriva ta zgodovinski biser na meji med Slovenijo in Hrvaško.</p>
+                        <div class="mb-4">
+                            <img src="https://cdn1.genspark.ai/user-upload-image/5_generated/b16f6ff9-6d4a-4cd8-99d5-b2cbee7a94ed_wm" alt="Grad Vinica" class="w-full h-auto rounded-lg mb-4">
+                        </div>
+                        <ul class="ml-5 list-disc mb-4">
+                            <li>Vodeni ogledi grajskih soban, stolpov in skrivnih hodnikov</li>
+                            <li>Muzejske zbirke in zgodovinski artefakti, ki prikazujejo življenje na gradu</li>
+                            <li>Zanimive zgodbe o grajskih prebivalcih skozi čas in pomembnih zgodovinskih dogodkih</li>
+                            <li>Avtentična srednjeveška doživetja in prikaz življenja v različnih zgodovinskih obdobjih</li>
+                        </ul>
+                        <p class="text-sm italic">Potovanje skozi čas za vse ljubitelje zgodovine, kulturnee dediščine in srednjeveških zgodb.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center" data-aos="fade-up">
+                <h3 class="text-2xl font-bold mb-4">Posebna doživetja na gradu Vinica</h3>
+                <p class="max-w-3xl mx-auto mb-8">Poleg redne ponudbe organiziramo tudi posebne dogodke in doživetja, kot so srednjeveški večeri, delavnice starih obrti, tematski vikendi in posebne sezone. Spremljajte naš koledar dogodkov za aktualne informacije.</p>
+                <a href="#" class="btn-secondary">Koledar dogodkov</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Visit Information -->
+    <div class="py-20 px-4 dark-section">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl font-bold mb-6 section-title">Načrtujte svoj obisk</h2>
+                    <div class="decorative-line mb-8 mt-8"></div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-3 text-white">Lokacija</h3>
+                        <p class="text-lg text-white">Grad Vinica 15, Vinica, Slovenija</p>
+                        <p class="text-accent mt-2">GPS koordinate: 45.4573° N, 15.2526° E</p>
+                        <p class="mt-4 text-white">Grad Vinica se nahaja v jugovzhodni Sloveniji, v regiji Bela Krajina, tik ob meji s Hrvaško. Lokacija na vzpetini nad reko Kolpo ponuja čudovite razglede in je idealno izhodišče za raziskovanje regije.</p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-3 text-white">Odpiralni čas</h3>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <p class="font-bold text-white">Pon - Pet:</p>
+                                <p class="font-bold text-white">Sob - Ned:</p>
+                                <p class="font-bold text-white">Prazniki:</p>
+                            </div>
+                            <div>
+                                <p class="text-white">10:00 - 18:00</p>
+                                <p class="text-white">09:00 - 20:00</p>
+                                <p class="text-white">10:00 - 16:00</p>
+                            </div>
+                        </div>
+                        <p class="text-sm mt-2 text-accent">Zadnji vstop 1 uro pred zaprtjem</p>
+                        <p class="mt-4 text-white">V poletni sezoni (junij-september) podaljšan odpiralni čas in dodatne aktivnosti. Priporočamo predhodno rezervacijo za vodene oglede in posebne doživetja.</p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-3 text-white">Vstopnina</h3>
+                        <div class="price-tag mb-4">od 5 EUR naprej</div>
+                        <div class="grid grid-cols-2 gap-2 mt-6">
+                            <div>
+                                <p class="font-bold text-white">Odrasli:</p>
+                                <p class="font-bold text-white">Otroci (6-14):</p>
+                                <p class="font-bold text-white">Študenti, upokojenci:</p>
+                                <p class="font-bold text-white">Družinska vstopnica:</p>
+                                <p class="font-bold text-white">Otroci do 5 let:</p>
+                            </div>
+                            <div>
+                                <p class="text-white">12 EUR</p>
+                                <p class="text-white">5 EUR</p>
+                                <p class="text-white">8 EUR</p>
+                                <p class="text-white">25 EUR</p>
+                                <p class="text-white">Brezplačno</p>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-white">Na voljo so tudi kombinirane vstopnice za več znamenitosti v regiji in posebni tematski paketi. Za skupine nad 10 oseb odobrimo 10% popust na redne cene vstopnic.</p>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <h2 class="text-4xl font-bold mb-6 section-title text-white">Rezervacije in kontakt</h2>
+                    <div class="decorative-line mb-8 mt-8"></div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-3 text-white">Stopite v stik</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 text-accent mr-3">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <p class="text-white">+386 64 188 117</p>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 text-accent mr-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <p class="text-white"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3950575f56795e4b585d4f5057505a58175a5654">[email&#160;protected]</a></p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 text-accent mr-3">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <p class="text-white">www.gradvinica.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold mb-3 text-white">Posebne ponudbe</h3>
+                        <ul class="ml-5 list-disc mb-4 text-white">
+                            <li class="mb-2">Vodeni ogledi za skupine (min. 10 oseb) z možnostjo prilagojene vsebine</li>
+                            <li class="mb-2">Organizacija porok, rojstnih dni in poslovnih dogodkov v grajskem ambientu</li>
+                            <li class="mb-2">Delavnice za otroke in odrasle (izdelava tradiconalnih predmetov, kuharski tečaji)</li>
+                            <li class="mb-2">Kombinirane vstopnice z drugimi znamenitostmi v regiji Bela Krajina</li>
+                            <li class="mb-2">Posebni tematski vikendi (srednjeveški dnevi, vinske degustacije, sezonski dogodki)</li>
+                        </ul>
+                        <p class="mt-4 text-white">Za več informacij o posebnih ponudbah in izdelavi programa po meri nas kontaktirajte po telefonu ali elektronski pošti.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold mb-3 text-white">Pridružite se nam</h3>
+                        <div class="flex gap-4 mt-4">
+                            <a href="https://www.facebook.com/VINICAGRAD/" class="w-12 h-12 bg-white text-dark flex items-center justify-center rounded-full text-xl transition-transform hover:transform hover:scale-110">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-white text-dark flex items-center justify-center rounded-full text-xl transition-transform hover:transform hover:scale-110">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-white text-dark flex items-center justify-center rounded-full text-xl transition-transform hover:transform hover:scale-110">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-white text-dark flex items-center justify-center rounded-full text-xl transition-transform hover:transform hover:scale-110">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                        <p class="mt-4 text-white">Sledite nam na družbenih omrežjih za najnovejše novice, dogodke in posebne ponudbe. Delite svoje doživetje na gradu Vinica z oznako #GradVinica.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Statistics Section -->
+    <div class="py-16 px-4 bg-light">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div data-aos="fade-up">
+                    <div class="stat-circle">
+                        <span class="text-4xl font-bold text-primary">20+</span>
+                        <span class="text-lg">Kočij</span>
+                    </div>
+                    <p class="mt-4">Edinstvena zbirka starinskih kočij različnih vrst in obdobij</p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-circle">
+                        <span class="text-4xl font-bold text-primary">900+</span>
+                        <span class="text-lg">Let</span>
+                    </div>
+                    <p class="mt-4">Bogate zgodovine gradu Vinica in njegove okolice</p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-circle">
+                        <span class="text-4xl font-bold text-primary">10k+</span>
+                        <span class="text-lg">Obiskovalcev</span>
+                    </div>
+                    <p class="mt-4">Nas vsako leto obišče iz Slovenije in tujine</p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-circle">
+                        <span class="text-4xl font-bold text-primary">6</span>
+                        <span class="text-lg">Doživetij</span>
+                    </div>
+                    <p class="mt-4">Edinstvenih aktivnosti, ki jih lahko doživite na našem posestvu</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Testimonials -->
+    <div class="py-20 px-4 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">Kaj pravijo obiskovalci</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-light p-8 rounded-lg shadow-lg relative" data-aos="fade-up">
+                    <div class="text-5xl text-accent absolute -top-5 left-6">"</div>
+                    <p class="italic mb-6 mt-4">Čudovit muzej kočij z bogato zgodovino. Najbolj so me navdušile čudovite lesene kočije in grajski ambient. Raziskovanje okolice gradu in sprehod ob reki Kolpi je bila prava paša za oči! Vrnili se bomo za vikend degustacije vin.</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white mr-4">
+                            <span class="font-bold">MJ</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Marko Jovanović</h4>
+                            <div class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-light p-8 rounded-lg shadow-lg relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-5xl text-accent absolute -top-5 left-6">"</div>
+                    <p class="italic mb-6 mt-4">Izjemno doživetje! Ogledali smo si muzej kočij, poskusili lokalna vina in se sprehodili po čudovitih poteh okoli gradu. Otroci so uživali v živalskem vrtu in zgodovinskih zgodbah, ki jih je delil naš vodič. Priporočam vsem, ki iščejo avtentično in edinstveno izkušnjo!</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white mr-4">
+                            <span class="font-bold">AN</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Ana Novak</h4>
+                            <div class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-light p-8 rounded-lg shadow-lg relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-5xl text-accent absolute -top-5 left-6">"</div>
+                    <p class="italic mb-6 mt-4">Uživali smo v ogledu zbirke kočij in grajske kapele. Prijazno osebje nam je predstavilo zgodovino vsake kočije in nam zaupalo nekaj skrivnosti gradu. Kosilo v grajski restavraciji je bilo vrhunsko, z lokalnimi specialitetami in odličnim vinom. Definitivno se bomo vrnili s prijatelji!</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white mr-4">
+                            <span class="font-bold">TK</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Tanja Kovač</h4>
+                            <div class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12 px-4 footer-section">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 footer-heading">Muzej Starinskih Kočij</h3>
+                    <p class="footer-content">Grad Vinica 15<br>8344 Vinica, Slovenija</p>
+                    <p class="mt-4 footer-content">Tel: +386 64 188 117<br>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="076e6961684760756663716e696e64662964686a">[email&#160;protected]</a></p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4 footer-heading">Hitra navigacija</h3>
+                    <ul class="footer-links">
+                        <li class="mb-2"><a href="#about">O muzeju</a></li>
+                        <li class="mb-2"><a href="#attractions">Znamenitosti</a></li>
+                        <li class="mb-2"><a href="#">Zbirka kočij</a></li>
+                        <li class="mb-2"><a href="#">Bela Krajina</a></li>
+                        <li class="mb-2"><a href="#">Cenik</a></li>
+                        <li class="mb-2"><a href="#">Kontakt</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4 footer-heading">Odpiralni čas</h3>
+                    <p class="mb-2 footer-content">Ponedeljek - Petek: 10:00 - 18:00</p>
+                    <p class="mb-2 footer-content">Sobota - Nedelja: 09:00 - 20:00</p>
+                    <p class="mb-2 footer-content">Prazniki: 10:00 - 16:00</p>
+                    <p class="mb-4 text-sm footer-highlight">Zadnji vstop eno uro pred zaprtjem</p>
+                    <p class="text-sm footer-content">V poletni sezoni podaljšan delovni čas. Za aktualne informacije nas kontaktirajte.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4 footer-heading">Povežite se z nami</h3>
+                    <div class="flex gap-4 mb-6">
+                        <a href="https://www.facebook.com/VINICAGRAD/" class="hover:text-accent text-2xl footer-content"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-accent text-2xl footer-content"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-accent text-2xl footer-content"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-accent text-2xl footer-content"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p class="text-sm mb-4 footer-content">Prijavite se na naše e-novice za redne informacije o dogodkih in posebnih ponudbah.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Vaš e-naslov" class="py-2 px-3 rounded-l-lg w-full focus:outline-none text-dark">
+                        <button type="submit" class="bg-accent text-dark py-2 px-4 rounded-r-lg hover:bg-secondary hover:text-white transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="decorative-line my-8"></div>
+            
+            <div class="text-center">
+                <p class="footer-content">&copy; 2023 Muzej Starinskih Kočij, Grad Vinica. Vse pravice pridržane.</p>
+                <p class="text-sm mt-2 footer-highlight">Grad Vinica - Kjer se zgodovina sreča s sodobnostjo</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation library
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease',
+                once: true
+            });
+            
+            // Accordion functionality
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    content.classList.toggle('active');
+                    
+                    // Toggle icon
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('fa-plus')) {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    } else {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    }
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
