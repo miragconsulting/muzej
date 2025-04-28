@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arba – Zgodba tradicionalnega slovenskega voza</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Source Sans Pro', 'Segoe UI', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f7f2;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d5bb89' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 0 40px rgba(91, 60, 17, 0.1);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, #8B5A2B, #D2B48C, #8B5A2B);
+        }
+        
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #5b3c11;
+            font-weight: bold;
+        }
+        
+        h1 {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .animated-underline {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: -6px;
+            left: 0;
+            background-color: #5b3c11;
+            transform-origin: bottom right;
+            transition: transform 0.5s ease-out;
+            transform: scaleX(0);
+        }
+        
+        .animated-underline.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.5s ease;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 1.2s ease-in-out;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-left: 0px solid #d2b48c;
+        }
+        
+        .section:hover {
+            border-left: 4px solid #d2b48c;
+            padding-left: calc(1rem - 2px);
+            background-color: rgba(210, 180, 140, 0.05);
+        }
+        
+        .list-item {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .list-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .list-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #5b3c11;
+            font-size: 1.2em;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            position: relative;
+        }
+        
+        .ornament {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235b3c11' opacity='0.2'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.2;
+        }
+        
+        .ornament.top-left {
+            top: 10px;
+            left: 10px;
+            transform: rotate(45deg);
+        }
+        
+        .ornament.top-right {
+            top: 10px;
+            right: 10px;
+            transform: rotate(-45deg);
+        }
+        
+        .ornament.bottom-left {
+            bottom: 10px;
+            left: 10px;
+            transform: rotate(-45deg);
+        }
+        
+        .ornament.bottom-right {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(45deg);
+        }
+        
+        .accent-bg {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #5b3c11;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .accent-bg.one {
+            top: -75px;
+            right: -75px;
+        }
+        
+        .accent-bg.two {
+            bottom: 20%;
+            left: -100px;
+            width: 200px;
+            height: 200px;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .wheel-icon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+            animation: spin 15s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .highlight-text {
+            position: relative;
+            display: inline-block;
+            padding: 0 4px;
+        }
+        
+        .highlight-text::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(210, 180, 140, 0.3);
+            z-index: -1;
+            transition: height 0.3s ease;
+        }
+        
+        .highlight-text:hover::before {
+            height: 100%;
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 15px;
+            background: #5b3c11;
+            color: white;
+            font-size: 0.8rem;
+            transform: rotate(3deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 1s ease, transform 0.5s ease;
+        }
+        
+        .ribbon.visible {
+            opacity: 1;
+            transform: rotate(3deg) translateY(0);
+        }
+        
+        /* For PDF export optimization */
+        @media print {
+            body {
+                background-color: white;
+                background-image: none;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+                max-width: 100%;
+            }
+            .ribbon {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-8 mb-12">
+        <div class="ornament top-left"></div>
+        <div class="ornament top-right"></div>
+        <div class="ornament bottom-left"></div>
+        <div class="ornament bottom-right"></div>
+        <div class="accent-bg one"></div>
+        <div class="accent-bg two"></div>
+        
+        <div class="ribbon" id="ribbon">Tradicionalna dediščina</div>
+        
+        <header class="text-center mb-10 relative">
+            <h1 class="text-4xl mb-4" data-aos="fade-down" data-aos-duration="1000">
+                <span class="animated-underline">Arba – Zgodba tradicionalnega slovenskega voza</span>
+            </h1>
+            <div class="w-32 h-1 bg-yellow-700 mx-auto mb-4 float-animation" data-aos="zoom-in" data-aos-delay="300"></div>
+            <svg class="wheel-icon mx-auto" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="#5b3c11" stroke-width="2" />
+                <circle cx="12" cy="12" r="2" fill="#5b3c11" />
+                <line x1="12" y1="2" x2="12" y2="4" stroke="#5b3c11" stroke-width="2" />
+                <line x1="12" y1="20" x2="12" y2="22" stroke="#5b3c11" stroke-width="2" />
+                <line x1="2" y1="12" x2="4" y2="12" stroke="#5b3c11" stroke-width="2" />
+                <line x1="20" y1="12" x2="22" y2="12" stroke="#5b3c11" stroke-width="2" />
+                <line x1="4.93" y1="4.93" x2="6.34" y2="6.34" stroke="#5b3c11" stroke-width="2" />
+                <line x1="17.66" y1="17.66" x2="19.07" y2="19.07" stroke="#5b3c11" stroke-width="2" />
+                <line x1="4.93" y1="19.07" x2="6.34" y2="17.66" stroke="#5b3c11" stroke-width="2" />
+                <line x1="17.66" y1="6.34" x2="19.07" y2="4.93" stroke="#5b3c11" stroke-width="2" />
+            </svg>
+        </header>
+
+        <div class="image-container" data-aos="fade-up" data-aos-duration="1200">
+            <img src="https://raw.githubusercontent.com/miragconsulting/Images/main/arba1.jpg" alt="Tradicionalni slovenski voz - arba" class="rounded transform hover:scale-105 transition duration-700 ease-in-out">
+        </div>
+
+        <div class="section" data-aos="fade-right" data-aos-duration="800">
+            <p class="text-lg">
+                Arba je eden <span class="highlight-text">najstarejših simbolov</span> slovenskega podeželskega življenja. Ta preprosta, a izredno pomembna vozila so skozi stoletja igrala ključno vlogo pri vsakdanjih opravilih na kmetijah, v vaseh in celo pri daljših prevozih blaga.
+            </p>
+        </div>
+
+        <div class="section" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+            <h2 class="text-2xl mb-3 animated-underline">Kaj je arba?</h2>
+            <p>
+                Arba je tradicionalen lesen voz, običajno z dvema ali štirimi lesenimi kolesi, namenjen prevozu različnih tovorov: sena, lesa, pridelkov in orodja. Vlekli so jo konji, voli ali celo ljudje, odvisno od teže tovora in terena. Njena konstrukcija je bila zasnovana tako, da je omogočala stabilnost in vzdržljivost tudi na ozkih, neravnih ali blatnih poteh slovenskega podeželja.
+            </p>
+        </div>
+
+        <div class="section" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
+            <h2 class="text-2xl mb-3 animated-underline">Gradnja in značilnosti</h2>
+            <p class="mb-3">
+                Vsaka arba je bila ročno izdelana, pogosto iz lokalnega lesa, kot so hrast, bukev ali jesen. Najbolj prepoznavni deli arbe so:
+            </p>
+            <div class="ml-6 mb-4">
+                <div class="list-item" id="item1">Velika kolesa z lesenimi špicami in kovinskimi obroči za večjo trpežnost</div>
+                <div class="list-item" id="item2">Močan vozni podstavek za prenašanje težkih bremen</div>
+                <div class="list-item" id="item3">Dolge ročice (lišaji), ki so omogočale vpreženje živali</div>
+                <div class="list-item" id="item4">Stranske ograje, ki so preprečevale padanje tovora</div>
+            </div>
+            <p>
+                Pogosto so bili vozi tudi <span class="highlight-text">umetelno okrašeni</span> – z ročno rezljanimi motivi, slikami in vzorci, kar je izražalo spretnost lokalnih mojstrov in estetski čut prebivalcev.
+            </p>
+        </div>
+
+        <div class="section" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
+            <h2 class="text-2xl mb-3 animated-underline">Družbeni in kulturni pomen</h2>
+            <p>
+                Arba ni bila zgolj praktično prevozno sredstvo, temveč tudi pomemben del vsakdanjega in prazničnega življenja. Na sejmih, žetvah in drugih skupnostnih dogodkih so bile arbe pogosto v središču dogajanja. Vozniki arb, imenovani tudi "arbarnarji", so bili v skupnosti cenjeni zaradi svojega znanja o pravilni vožnji in vzdrževanju vozov.
+            </p>
+            <p class="mt-3">
+                V marsikateri slovenski regiji je arba postala tudi simbol gostoljubnosti in tradicije, danes pa jo lahko občudujemo v muzejih na prostem, na etnografskih razstavah in folklornih prireditvah.
+            </p>
+        </div>
+
+        <div class="section" data-aos="fade-right" data-aos-duration="800" data-aos-delay="400">
+            <h2 class="text-2xl mb-3 animated-underline">Arba danes</h2>
+            <p>
+                Čeprav jo je sodobna mehanizacija skoraj popolnoma nadomestila, arba ostaja živa v zavesti ljudi kot <span class="highlight-text">dragocen del kulturne dediščine</span>. V našem muzeju skrbno hranimo in razstavljamo različne tipe arb, s čimer obiskovalcem omogočamo vpogled v življenje naših prednikov in spoštovanje njihove spretnosti ter iznajdljivosti.
+            </p>
+        </div>
+
+        <div class="footer text-center" data-aos="fade-up" data-aos-duration="800">
+            <p class="text-lg font-semibold float-animation">
+                Vabljeni, da si ogledate našo zbirko arb in odkrijete zgodbe, ki jih nosijo v svojih lesenih kolesih!
+            </p>
+            <p class="mt-4 text-sm text-gray-600">
+                © 2023 Etnografska zbirka slovenske kulturne dediščine
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animations
+            AOS.init({
+                once: false,
+                mirror: true
+            });
+            
+            // Animate underlines
+            setTimeout(function() {
+                const underlines = document.querySelectorAll('.animated-underline');
+                underlines.forEach(el => {
+                    el.classList.add('active');
+                });
+            }, 500);
+            
+            // Animate list items sequentially
+            const listItems = document.querySelectorAll('.list-item');
+            listItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                }, 800 + (index * 200));
+            });
+            
+            // Show ribbon with delay
+            setTimeout(() => {
+                document.getElementById('ribbon').classList.add('visible');
+            }, 1500);
+            
+            // Add parallax effect to the main image
+            const image = document.querySelector('.image-container img');
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.pageYOffset;
+                const imageContainer = document.querySelector('.image-container');
+                const containerPosition = imageContainer.getBoundingClientRect().top + window.pageYOffset;
+                const offset = (scrollPosition - containerPosition) * 0.1;
+                
+                if (offset > -100 && offset < 100) {
+                    image.style.transform = `translateY(${offset}px)`;
+                }
+            });
+            
+            // Animate section headers when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const header = entry.target.querySelector('h2');
+                        if (header) {
+                            header.classList.add('active');
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
