@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rimska transportna vozila – moč zrnja in imperija</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Source Sans Pro', 'Segoe UI', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f7f2;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23925f2d' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 0 40px rgba(91, 60, 17, 0.1);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, #8B4513, #D2691E, #8B4513);
+        }
+        
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #8B4513;
+            font-weight: bold;
+        }
+        
+        h1 {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .animated-underline {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: -6px;
+            left: 0;
+            background-color: #8B4513;
+            transform-origin: bottom right;
+            transition: transform 0.5s ease-out;
+            transform: scaleX(0);
+        }
+        
+        .animated-underline.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.5s ease;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 1.2s ease-in-out;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-left: 0px solid #CD853F;
+        }
+        
+        .section:hover {
+            border-left: 4px solid #CD853F;
+            padding-left: calc(1rem - 2px);
+            background-color: rgba(205, 133, 63, 0.05);
+        }
+        
+        .list-item {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .list-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #8B4513;
+            font-size: 1.2em;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            position: relative;
+        }
+        
+        .ornament {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            opacity: 0.2;
+        }
+        
+        .ornament.top-left {
+            top: 10px;
+            left: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M19 6h-4V2H9v4H5v14h14V6z' fill='none' stroke='%238B4513' stroke-width='2'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(-15deg);
+        }
+        
+        .ornament.top-right {
+            top: 10px;
+            right: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M19 6h-4V2H9v4H5v14h14V6z' fill='none' stroke='%238B4513' stroke-width='2'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(15deg);
+        }
+        
+        .ornament.bottom-left {
+            bottom: 10px;
+            left: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M19 6h-4V2H9v4H5v14h14V6z' fill='none' stroke='%238B4513' stroke-width='2'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(-45deg);
+        }
+        
+        .ornament.bottom-right {
+            bottom: 10px;
+            right: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M19 6h-4V2H9v4H5v14h14V6z' fill='none' stroke='%238B4513' stroke-width='2'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(45deg);
+        }
+        
+        .accent-bg {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #8B4513;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .accent-bg.one {
+            top: -75px;
+            right: -75px;
+        }
+        
+        .accent-bg.two {
+            bottom: 20%;
+            left: -100px;
+            width: 200px;
+            height: 200px;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .wheel-icon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+            animation: spin 15s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .highlight-text {
+            position: relative;
+            display: inline-block;
+            padding: 0 4px;
+        }
+        
+        .highlight-text::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(205, 133, 63, 0.3);
+            z-index: -1;
+            transition: height 0.3s ease;
+        }
+        
+        .highlight-text:hover::before {
+            height: 100%;
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 15px;
+            background: #8B4513;
+            color: white;
+            font-size: 0.8rem;
+            transform: rotate(3deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: opacity 1s ease, transform 0.5s ease;
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #8B4513, transparent);
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: "✦";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            padding: 0 15px;
+            color: #8B4513;
+            font-size: 1.2rem;
+        }
+        
+        .legend-box {
+            border-left: 4px solid #8B4513;
+            padding: 1rem 1.5rem;
+            background-color: rgba(205, 133, 63, 0.1);
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            overflow: hidden;
+            font-style: italic;
+        }
+        
+        .legend-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%238B4513' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+            z-index: -1;
+        }
+        
+        .fact-box {
+            border: 2px dashed #CD853F;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            background-color: rgba(205, 133, 63, 0.05);
+        }
+        
+        .fact-box h3 {
+            color: #8B4513;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+        }
+        
+        .roman-icon {
+            display: inline-block;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 5px;
+            color: #8B4513;
+        }
+        
+        .laurel-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 0 30px;
+        }
+        
+        .laurel-wrapper::before, .laurel-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 25px;
+            height: 50px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: translateY(-50%);
+        }
+        
+        .laurel-wrapper::before {
+            left: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M14 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-2-8c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z' stroke='%238B4513' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+            transform: translateY(-50%) rotate(-90deg);
+        }
+        
+        .laurel-wrapper::after {
+            right: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M14 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-2-8c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm6 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z' stroke='%238B4513' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+            transform: translateY(-50%) rotate(90deg);
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #8B4513, transparent);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #8B4513;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.3);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #8B4513;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                background-image: none;
+            }
+            .container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
+            }
+            .image-container:hover img {
+                transform: none;
+            }
+            .section:hover {
+                border-left: 0;
+                padding-left: 1rem;
+                background-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-8 mb-12">
+        <div class="ornament top-left"></div>
+        <div class="ornament top-right"></div>
+        <div class="ornament bottom-left"></div>
+        <div class="ornament bottom-right"></div>
+        <div class="accent-bg one"></div>
+        <div class="accent-bg two"></div>
+        
+        <div class="ribbon" id="ribbon">Kulturna dediščina Rima</div>
+        
+        <header class="text-center mb-10 relative">
+            <h1 class="text-4xl mb-4" id="main-title">
+                <span class="animated-underline active">Rimska transportna vozila</span>
+            </h1>
+            <h2 class="text-2xl mb-3 text-yellow-800 italic font-light">– moč zrnja in imperija</h2>
+            <div class="w-32 h-1 bg-yellow-800 mx-auto mb-4 float-animation"></div>
+            <div class="laurel-wrapper">
+                <svg class="wheel-icon mx-auto" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="#8B4513" stroke-width="2" />
+                    <circle cx="12" cy="12" r="2" fill="#8B4513" />
+                    <line x1="12" y1="2" x2="12" y2="4" stroke="#8B4513" stroke-width="2" />
+                    <line x1="12" y1="20" x2="12" y2="22" stroke="#8B4513" stroke-width="2" />
+                    <line x1="2" y1="12" x2="4" y2="12" stroke="#8B4513" stroke-width="2" />
+                    <line x1="20" y1="12" x2="22" y2="12" stroke="#8B4513" stroke-width="2" />
+                    <line x1="4.93" y1="4.93" x2="6.34" y2="6.34" stroke="#8B4513" stroke-width="2" />
+                    <line x1="17.66" y1="17.66" x2="19.07" y2="19.07" stroke="#8B4513" stroke-width="2" />
+                    <line x1="4.93" y1="19.07" x2="6.34" y2="17.66" stroke="#8B4513" stroke-width="2" />
+                    <line x1="17.66" y1="6.34" x2="19.07" y2="4.93" stroke="#8B4513" stroke-width="2" />
+                </svg>
+            </div>
+        </header>
+
+        <div class="image-container">
+            <!-- Descriptive illustration instead of image -->
+            <div class="bg-yellow-50 p-10 text-center">
+                <div class="text-3xl text-yellow-800 mb-4"><i class="fas fa-truck"></i> <i class="fas fa-horse"></i></div>
+                <p class="italic text-lg text-gray-700">Slika: Rekonstrukcija rimskega transportnega voza z visokimi stranicami za prevoz žita in drugih sipkih materialov, značilna za obdobje 1.–4. stoletja n. št.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <p class="text-lg">
+                Pred vami stoji rekonstrukcija rimskega transportnega voza, kakršne so uporabljali v času <span class="highlight-text">rimskega imperija</span> za prevoz pšenice, žita, soli in drugih sipkih tovorov po podeželskih cestah in glavnih rimskih poteh – t. i. <span class="italic">viae publicae</span>.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2 class="text-2xl mb-3 animated-underline active">Konstrukcija in namen</h2>
+            <p>
+                Ti vozovi, izdelani pretežno iz lesa, so bili praktični, vzdržljivi in prilagojeni za dolga potovanja. Imeli so visoke stranice, da se tovor ni razsul, kolesa z železnimi obroči pa so prenesla velike obremenitve. Rimski upravitelji so z njihovo pomočjo zagotavljali oskrbo mest, vojaških taborov in trgovskih središč.
+            </p>
+            <p class="mt-3">
+                Čeprav gre za sodobno repliko, je izdelana po ohranjenih arheoloških virih in prikazuje značilno konstrukcijo iz obdobja <span class="highlight-text">1.–4. stoletja n. št.</span>
+            </p>
+        </div>
+
+        <div class="fact-box">
+            <h3><span class="roman-icon">S·P·Q·R</span> Zanimivosti</h3>
+            <p>
+                Rimljani so razvili obsežen sistem cest, ki so omogočale učinkovit transport blaga po celotnem imperiju. Te ceste, imenovane <span class="italic">viae</span>, so bile razdeljene na več kategorij:
+            </p>
+            <ul class="mt-2 ml-6 list-disc">
+                <li class="mb-1"><span class="italic">Via publica</span> – glavne javne ceste, vzdrževano na državne stroške</li>
+                <li class="mb-1"><span class="italic">Via militaris</span> – vojaške ceste, namenjene hitremu premiku legij</li>
+                <li class="mb-1"><span class="italic">Via privata</span> – zasebne ceste, ki so povezovale posestva</li>
+            </ul>
+            <p class="mt-2">
+                Vzdolž teh cest so bili postavljeni miljniki (<span class="italic">miliarium</span>), ki so označevali razdaljo od Rima, ter postaje (<span class="italic">mansiones</span>), kjer so si potniki in vozniki lahko odpočili in zamenjali konje.
+            </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="legend-box">
+            <h2 class="text-2xl mb-3 animated-underline active">Legenda o zadnjem tovoru iz Poetovione</h2>
+            <p class="text-gray-700">
+                Po ustnem izročilu, ki ga še danes pripovedujejo starejši prebivalci Haloz, naj bi podoben rimski voz kot ta nekoč peljal zadnji tovor cesarske pšenice iz mesta Poetovio (današnji Ptuj) proti južnim stražnim stolpom ob reki Kolpi.
+            </p>
+            <p class="text-gray-700 mt-3">
+                Ko so legionarji izvedeli, da prihajajo Goti in da bo cesta prekinjena, so voz s pšenico zakopali v bližnji dolini, da ga barbari ne bi izropali. V noči pred napadom naj bi voznik – veteran 9. legije – s svojo baklo zažgal del tovorne poti, da bi upočasnil sovražnike.
+            </p>
+            <p class="text-gray-700 mt-3">
+                Čeprav voz nikoli niso našli, domačini še danes pravijo, da če ponoči prisluhneš v tisti dolini, slišiš škripanje lesenih koles in šelestenje žitnih zrn, ki jih veter še vedno nosi čez travnike.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2 class="text-2xl mb-3 animated-underline active">Rimski transportni sistem</h2>
+            <p>
+                Rimski transportni sistem je bil eden najpomembnejših dosežkov imperija. Brez učinkovitega prevoza hrane in dobrin bi bila rimska mesta in vojaške postojanke odrezane od oskrbe, kar bi lahko povzročilo nemire in nestabilnost.
+            </p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">312 pr.n.št.</span>
+                    <p>Začetek gradnje Via Appia, prve velike rimske ceste</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1. stol. n.št.</span>
+                    <p>Standardizacija vozov in transportnih poti po celotnem imperiju</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">2.–3. stol. n.št.</span>
+                    <p>Vrhunec razvoja transportnega sistema, ko je bilo mogoče prevažati blago po skoraj 80.000 km rimskih cest</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">4. stol. n.št.</span>
+                    <p>Začetek propada infrastrukture na obrobju imperija zaradi barbarskih vdorov</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="text-2xl mb-3 animated-underline active">Pomen za naše ozemlje</h2>
+            <p>
+                Skozi današnje slovensko ozemlje je potekalo več pomembnih rimskih cest, vključno s cesto <span class="highlight-text">Emona–Poetovio–Savaria</span>, ki je povezovala današnjo Ljubljano s Ptujem in naprej s Szombathelyjom na Madžarskem. Te ceste so omogočale živahno trgovino, kulturno izmenjavo in vojaško oskrbo.
+            </p>
+            <p class="mt-3">
+                Arheološke najdbe kažejo, da so bili vozovi, podobni temu, pogosto uporabljani za prevoz poljščin, keramike, kamna in drugih materialov. V nekaterih primerih so bili najdeni ostanki vozov na rimskih posestvih (<span class="italic">villae rusticae</span>), kar kaže na njihovo pomembno vlogo v vsakdanjem življenju.
+            </p>
+        </div>
+
+        <div class="fact-box">
+            <h3>Rekonstrukcija iz zgodovinskih virov</h3>
+            <p>
+                Naš muzejski eksponat je bil rekonstruiran na podlagi več virov:
+            </p>
+            <ul class="mt-2 ml-6 list-disc">
+                <li class="mb-1">Rimski reliefi, ki prikazujejo vozove za prevoz tovora</li>
+                <li class="mb-1">Arheološke najdbe kovinskih delov koles in vozov</li>
+                <li class="mb-1">Pisni viri, vključno z deli Plinija Starejšega in Vitruvija</li>
+                <li class="mb-1">Primerljive rekonstrukcije iz drugih evropskih muzejev</li>
+            </ul>
+        </div>
+
+        <div class="footer text-center">
+            <p class="text-lg font-semibold float-animation">
+                Vabimo vas, da razmišljate o neverjetni mreži povezav, ki so bile ustvarjene pred več kot 2000 leti, in o tem, kako so te povezave oblikovale današnjo podobo naše dežele.
+            </p>
+            <p class="mt-4 text-sm text-gray-600">
+                © 2023 Muzej transportne dediščine Slovenije • Zbiranje in varovanje kulturne dediščine
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add active class to all animated underlines when page loads
+            const underlines = document.querySelectorAll('.animated-underline');
+            underlines.forEach(el => {
+                setTimeout(() => {
+                    el.classList.add('active');
+                }, 300);
+            });
+            
+            // Show ribbon
+            const ribbon = document.getElementById('ribbon');
+            if (ribbon) {
+                setTimeout(() => {
+                    ribbon.style.opacity = '1';
+                }, 800);
+            }
+        });
+    </script>
+</body>
+</html>
