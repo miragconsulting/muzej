@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voz-tamnica – kolesa pravice in strahu</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Source Sans Pro', 'Segoe UI', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f7f2;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%233d3d3d' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 0 40px rgba(91, 60, 17, 0.1);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, #4b4237, #a38f78, #4b4237);
+        }
+        
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #4b4237;
+            font-weight: bold;
+        }
+        
+        h1 {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .animated-underline {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: -6px;
+            left: 0;
+            background-color: #4b4237;
+            transform-origin: bottom right;
+            transition: transform 0.5s ease-out;
+            transform: scaleX(0);
+        }
+        
+        .animated-underline.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.5s ease;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 1.2s ease-in-out;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-left: 0px solid #a38f78;
+        }
+        
+        .section:hover {
+            border-left: 4px solid #a38f78;
+            padding-left: calc(1rem - 2px);
+            background-color: rgba(163, 143, 120, 0.05);
+        }
+        
+        .list-item {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .list-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .list-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #4b4237;
+            font-size: 1.2em;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            position: relative;
+        }
+        
+        .ornament {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234b4237' opacity='0.2'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.2;
+        }
+        
+        .ornament.top-left {
+            top: 10px;
+            left: 10px;
+            transform: rotate(45deg);
+        }
+        
+        .ornament.top-right {
+            top: 10px;
+            right: 10px;
+            transform: rotate(-45deg);
+        }
+        
+        .ornament.bottom-left {
+            bottom: 10px;
+            left: 10px;
+            transform: rotate(-45deg);
+        }
+        
+        .ornament.bottom-right {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(45deg);
+        }
+        
+        .accent-bg {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #4b4237;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .accent-bg.one {
+            top: -75px;
+            right: -75px;
+        }
+        
+        .accent-bg.two {
+            bottom: 20%;
+            left: -100px;
+            width: 200px;
+            height: 200px;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .key-icon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+            transform-origin: center;
+            animation: shake 10s infinite;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            1%, 5% { transform: rotate(-15deg); }
+            2%, 4% { transform: rotate(15deg); }
+            3% { transform: rotate(-15deg); }
+        }
+        
+        .highlight-text {
+            position: relative;
+            display: inline-block;
+            padding: 0 4px;
+        }
+        
+        .highlight-text::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(163, 143, 120, 0.3);
+            z-index: -1;
+            transition: height 0.3s ease;
+        }
+        
+        .highlight-text:hover::before {
+            height: 100%;
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 15px;
+            background: #4b4237;
+            color: white;
+            font-size: 0.8rem;
+            transform: rotate(3deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 1s ease, transform 0.5s ease;
+        }
+        
+        .ribbon.visible {
+            opacity: 1;
+            transform: rotate(3deg) translateY(0);
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #4b4237, transparent);
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: "⸻";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            padding: 0 15px;
+            color: #4b4237;
+            font-size: 1.2rem;
+        }
+        
+        .legend-box {
+            border-left: 4px solid #4b4237;
+            padding: 1rem 1.5rem;
+            background-color: rgba(163, 143, 120, 0.1);
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .legend-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%234b4237' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+            z-index: -1;
+        }
+        
+        .cage-illustration {
+            width: 100%;
+            height: 300px;
+            background-color: #f9f7f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cage {
+            width: 200px;
+            height: 250px;
+            border: 3px solid #4b4237;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        
+        .cage-top {
+            width: 100%;
+            height: 20px;
+            border-bottom: 3px solid #4b4237;
+            border-radius: 50% 50% 0 0;
+        }
+        
+        .cage-bottom {
+            width: 100%;
+            height: 20px;
+            border-top: 3px solid #4b4237;
+        }
+        
+        .bars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .bar {
+            width: 3px;
+            height: 100%;
+            background-color: #4b4237;
+        }
+        
+        .wheels {
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        
+        .wheel {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #4b4237;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .wheel::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background-color: #4b4237;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .spokes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .spoke {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background-color: #4b4237;
+            transform-origin: center;
+        }
+        
+        .spoke:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg); }
+        .spoke:nth-child(2) { transform: translate(-50%, -50%) rotate(45deg); }
+        .spoke:nth-child(3) { transform: translate(-50%, -50%) rotate(90deg); }
+        .spoke:nth-child(4) { transform: translate(-50%, -50%) rotate(135deg); }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            height: 100%;
+            width: 4px;
+            background: #a38f78;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 50px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 16px;
+            width: 12px;
+            height: 12px;
+            background: #4b4237;
+            border-radius: 50%;
+            top: 5px;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #4b4237;
+            margin-bottom: 5px;
+        }
+        
+        .timeline-content {
+            padding: 15px;
+            background: #f9f7f2;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .fact-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #a38f78;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+        
+        .perspective-box {
+            perspective: 1000px;
+            margin: 40px 0;
+        }
+        
+        .quote-3d {
+            transform-style: preserve-3d;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 600px;
+            background: rgba(163, 143, 120, 0.05);
+            border-left: 4px solid #4b4237;
+            font-style: italic;
+            color: #444;
+            transform: rotateX(5deg);
+            transition: transform 0.5s;
+        }
+        
+        .quote-3d:hover {
+            transform: rotateX(0deg);
+        }
+        
+        /* For PDF export optimization */
+         {
+            body {
+                background-color: white;
+                background-image: none;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+                max-width: 100%;
+            }
+            .ribbon {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-8 mb-12">
+        <div class="ornament top-left"></div>
+        <div class="ornament top-right"></div>
+        <div class="ornament bottom-left"></div>
+        <div class="ornament bottom-right"></div>
+        <div class="accent-bg one"></div>
+        <div class="accent-bg two"></div>
+        
+        <div class="ribbon" id="ribbon">Iz zgodovine pravosodja</div>
+        
+        <header class="text-center mb-10 relative">
+            <h1 class="text-4xl mb-4" data-aos="fade-down" data-aos-duration="1000">
+                <span class="animated-underline">Voz-tamnica – kolesa pravice in strahu</span>
+            </h1>
+            <div class="w-32 h-1 bg-yellow-800 mx-auto mb-4 float-animation" data-aos="zoom-in" data-aos-delay="300"></div>
+            <svg class="key-icon mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4b4237">
+                <path d="M7 14C5.9 14 5 13.1 5 12C5 10.9 5.9 10 7 10C8.1 10 9 10.9 9 12C9 13.1 8.1 14 7 14M12.6 10C11.8 7.7 9.6 6 7 6C3.7 6 1 8.7 1 12C1 15.3 3.7 18 7 18C9.6 18 11.8 16.3 12.6 14H16V18H20V14H23V10H12.6Z" />
+            </svg>
+        </header>
+
+        <div class="cage-illustration" data-aos="fade-up" data-aos-duration="1200">
+            <div class="cage">
+                <div class="cage-top"></div>
+                <div class="bars">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div class="cage-bottom"></div>
+                <div class="wheels">
+                    <div class="wheel">
+                        <div class="spokes">
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                        </div>
+                    </div>
+                    <div class="wheel">
+                        <div class="spokes">
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                            <div class="spoke"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend-box" data-aos="fade-right" data-aos-duration="800">
+            <h2 class="text-2xl mb-3 animated-underline">Priča pravosodnega sistema</h2>
+            <p class="italic text-gray-700">
+                Lesen voz z rešetkastimi stenami, ki stoji pred vami, ni običajno prevozno sredstvo. Gre za originalno reprodukcijo t. i. zaporniškega voza, kakršne so v 18. in 19. stoletju uporabljale mestne straže, župani in vojaške oblasti za prevoz priprtih, obsojenih in nevarnih oseb.
+            </p>
+            <p class="italic text-gray-700 mt-3">
+                Ko se je tak voz pripeljal v vas, je med prebivalci vzbudil strah – pomenil je resne obtožbe, kaznovanje ali celo javni proces. Ljudje so ob zvoku njegovih koles pogosto zapuščali ulice in se zapirali v hiše. Zvok teh koles je bil znan kot "šepet pravice".
+            </p>
+        </div>
+
+        <div class="divider" data-aos="fade-in" data-aos-duration="800"></div>
+
+        <div class="section" data-aos="fade-right" data-aos-duration="800">
+            <h2 class="text-2xl mb-3 animated-underline">Mobilna ječa</h2>
+            <p>
+                Takšni vozovi so bili strogi, zaprti prostori na kolesih, ki so omogočali premik zapornikov iz ene graščine v drugo, iz vasi v glavno mesto ali iz kraja zločina na sodišče. V notranjosti je bilo le malo prostora, <span class="highlight-text">železne rešetke</span> pa so omogočale paznikom, da so imeli pripornike ves čas na očeh.
+            </p>
+            <p class="mt-3">
+                Posebnost tega voza je majhno okence s kovinskimi prečkami in močno lesenimi stenami, ki so onemogočale pobeg. Vozi so pogosto potovali v spremstvu oboroženih mož in so bili simbol strahu med prebivalci.
+            </p>
+        </div>
+
+        <div class="section" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+            <h2 class="text-2xl mb-3 animated-underline">Zgodovinska uporaba</h2>
+            <p>
+                V določenih obdobjih zgodovine – zlasti med francosko okupacijo in poznejšimi kazenskimi reformami – so bili takšni vozovi uporabljeni tudi za transport političnih nasprotnikov, tihotapcev in vojakov dezerterjev.
+            </p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">18. stoletje</div>
+                    <div class="timeline-content">
+                        Prvi zaporniški vozovi se pojavijo kot način prevoza zapornikov med mesti.
+                        <div><span class="fact-badge">Zanimivost</span> Izdelani so bili iz najtežjega hrastovega lesa.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1809-1813</div>
+                    <div class="timeline-content">
+                        Med francosko okupacijo se poveča uporaba zaporniških vozov za prevoz političnih zapornikov.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">1850-1870</div>
+                    <div class="timeline-content">
+                        Obdobje pravosodnih reform – zaporniški vozovi dobijo bolj humano obliko z boljšim prezračevanjem.
+                        <div><span class="fact-badge">Dokument</span> Prvi zakoni o humanem ravnanju z zaporniki med prevozom.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Konec 19. stoletja</div>
+                    <div class="timeline-content">
+                        Postopno opuščanje zaporniških vozov z razvojem železnice in specializiranih vozil.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider" data-aos="fade-in" data-aos-duration="800"></div>
+
+        <div class="section" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
+            <h2 class="text-2xl mb-3 animated-underline">Konstrukcijske posebnosti</h2>
+            <p>
+                Voz-tamnica je bil konstrukcijsko premišljen za svoj namen:
+            </p>
+            <ul class="mt-2 space-y-2">
+                <li class="list-item">Močne lesene stene, pogosto dodatno ojačane s kovinskimi trakovi</li>
+                <li class="list-item">Rešetkasta okna, ki so omogočala zrak, a preprečevala pobeg</li>
+                <li class="list-item">Zaklenjeni vstop na zadnji strani z ojačanimi tečaji</li>
+                <li class="list-item">Posebej izdelana kolesa, ki so omogočala vožnjo po različnih terenih</li>
+                <li class="list-item">Prostor za stražarje na sprednjem delu voza</li>
+                <li class="list-item">Včasih tudi posebne kljuke za pritrjevanje verig</li>
+            </ul>
+        </div>
+
+        <div class="perspective-box" data-aos="fade-up" data-aos-duration="800">
+            <div class="quote-3d">
+                "Ko slišite škripanje koles tega voza, pomislite na čas, ko svoboda ni bila samoumevna pravica, ampak privileg, ki ga je lahko oblast kadarkoli odvzela."
+                <div class="text-right mt-2">― iz zbirke pričevanj slovenskega podeželja, 1895</div>
+            </div>
+        </div>
+
+        <div class="section" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
+            <h2 class="text-2xl mb-3 animated-underline">Pomen za današnji čas</h2>
+            <p>
+                Danes ta voz v našem muzeju ne predstavlja le sence preteklosti, temveč nas opozarja na pomen pravne države, svobode gibanja in človekovega dostojanstva. Vabimo vas, da se zazrete skozi rešetke in si zamislite – kako je bilo, ko se je človek sredi poti znašel brez svobode, a s pogledom na odprto pokrajino.
+            </p>
+            <p class="mt-3">
+                Ko si ogledujete ta voz, pomislite na razvoj pravosodnega sistema in kako smo kot družba napredovali od časov, ko so bili obsojenci javno prevažani v takšnih vozovih.
+            </p>
+        </div>
+
+        <div class="footer text-center" data-aos="fade-up" data-aos-duration="800">
+            <p class="text-lg font-semibold float-animation">
+                Vabimo vas, da si v našem muzeju ogledate to edinstveno pričevanje zgodovine pravosodja na Slovenskem.
+            </p>
+            <p class="mt-4 text-sm text-gray-600">
+                © Muzej slovenske zgodovine in kulturne dediščine
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animations
+            AOS.init({
+                once: false,
+                mirror: true
+            });
+            
+            // Animate underlines
+            setTimeout(function() {
+                const underlines = document.querySelectorAll('.animated-underline');
+                underlines.forEach(el => {
+                    el.classList.add('active');
+                });
+            }, 500);
+            
+            // Animate list items sequentially
+            const listItems = document.querySelectorAll('.list-item');
+            listItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                }, 800 + (index * 200));
+            });
+            
+            // Show ribbon with delay
+            setTimeout(() => {
+                document.getElementById('ribbon').classList.add('visible');
+            }, 1500);
+            
+            // Animate section headers when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const header = entry.target.querySelector('h2');
+                        if (header) {
+                            header.classList.add('active');
+                        }
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
