@@ -1,0 +1,605 @@
+
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ameriški diližans – legenda divjega zahoda na kolesih</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Source Sans Pro', 'Segoe UI', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f7f2;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23845c34' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 0 40px rgba(91, 60, 17, 0.1);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, #8B4513, #DEB887, #8B4513);
+        }
+        
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #8B4513;
+            font-weight: bold;
+        }
+        
+        h1 {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .animated-underline {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: -6px;
+            left: 0;
+            background-color: #8B4513;
+            transform-origin: bottom right;
+            transition: transform 0.5s ease-out;
+            transform: scaleX(0);
+        }
+        
+        .animated-underline.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.5s ease;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 1.2s ease-in-out;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-left: 0px solid #DEB887;
+        }
+        
+        .section:hover {
+            border-left: 4px solid #DEB887;
+            padding-left: calc(1rem - 2px);
+            background-color: rgba(222, 184, 135, 0.05);
+        }
+        
+        .list-item {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .list-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #8B4513;
+            font-size: 1.2em;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            position: relative;
+        }
+        
+        .ornament {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513' opacity='0.2'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.2;
+        }
+        
+        .ornament.top-left {
+            top: 10px;
+            left: 10px;
+            transform: rotate(45deg);
+        }
+        
+        .ornament.top-right {
+            top: 10px;
+            right: 10px;
+            transform: rotate(-45deg);
+        }
+        
+        .ornament.bottom-left {
+            bottom: 10px;
+            left: 10px;
+            transform: rotate(-45deg);
+        }
+        
+        .ornament.bottom-right {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(45deg);
+        }
+        
+        .accent-bg {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #8B4513;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .accent-bg.one {
+            top: -75px;
+            right: -75px;
+        }
+        
+        .accent-bg.two {
+            bottom: 20%;
+            left: -100px;
+            width: 200px;
+            height: 200px;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .wheel-icon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+            animation: spin 15s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .highlight-text {
+            position: relative;
+            display: inline-block;
+            padding: 0 4px;
+        }
+        
+        .highlight-text::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(222, 184, 135, 0.3);
+            z-index: -1;
+            transition: height 0.3s ease;
+        }
+        
+        .highlight-text:hover::before {
+            height: 100%;
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 15px;
+            background: #8B4513;
+            color: white;
+            font-size: 0.8rem;
+            transform: rotate(3deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #8B4513, transparent);
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: "⸻";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            padding: 0 15px;
+            color: #8B4513;
+            font-size: 1.2rem;
+        }
+        
+        .legend-box {
+            border-left: 4px solid #8B4513;
+            padding: 1rem 1.5rem;
+            background-color: rgba(222, 184, 135, 0.1);
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .legend-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%238B4513' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+            z-index: -1;
+        }
+        
+        .cowboy-icon {
+            width: 35px;
+            height: 35px;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 10px;
+        }
+        
+        .american-flag {
+            display: inline-block;
+            width: 30px;
+            height: 20px;
+            margin-right: 10px;
+            background: repeating-linear-gradient(
+                to right,
+                #E73C3C 0%,
+                #E73C3C 10%,
+                #FFFFFF 10%,
+                #FFFFFF 20%
+            );
+            position: relative;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .american-flag::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 60%;
+            background-color: #3C3CE7;
+        }
+        
+        .fact-box {
+            background-color: #FDFAF5;
+            border: 1px dashed #DEB887;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .fact-box::before {
+            content: "Zanimivost";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background-color: white;
+            padding: 0 10px;
+            color: #8B4513;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Wild West flourish dividers */
+        .wild-west-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .wild-west-divider:before,
+        .wild-west-divider:after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #8B4513, transparent);
+            margin: 0 15px;
+        }
+
+        .wild-west-divider .icon {
+            color: #8B4513;
+            font-size: 1.2rem;
+            transform: rotate(45deg);
+        }
+        
+         {
+            body {
+                background-color: white;
+                background-image: none;
+            }
+            .container {
+                box-shadow: none;
+                padding: 1rem;
+                margin: 0;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-8 mb-12">
+        <div class="ornament top-left"></div>
+        <div class="ornament top-right"></div>
+        <div class="ornament bottom-left"></div>
+        <div class="ornament bottom-right"></div>
+        <div class="accent-bg one"></div>
+        <div class="accent-bg two"></div>
+        
+        <div class="ribbon">Kulturna dediščina Amerike</div>
+        
+        <header class="text-center mb-10 relative">
+            <h1 class="text-4xl mb-4 animated-underline active">
+                Ameriški diližans – legenda divjega zahoda na kolesih
+            </h1>
+            <div class="w-32 h-1 bg-yellow-800 mx-auto mb-4 float-animation"></div>
+            
+            <div class="flex justify-center items-center">
+                <svg class="wheel-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="#8B4513" stroke-width="2" />
+                    <circle cx="12" cy="12" r="2" fill="#8B4513" />
+                    <line x1="12" y1="2" x2="12" y2="4" stroke="#8B4513" stroke-width="2" />
+                    <line x1="12" y1="20" x2="12" y2="22" stroke="#8B4513" stroke-width="2" />
+                    <line x1="2" y1="12" x2="4" y2="12" stroke="#8B4513" stroke-width="2" />
+                    <line x1="20" y1="12" x2="22" y2="12" stroke="#8B4513" stroke-width="2" />
+                    <line x1="4.93" y1="4.93" x2="6.34" y2="6.34" stroke="#8B4513" stroke-width="2" />
+                    <line x1="17.66" y1="17.66" x2="19.07" y2="19.07" stroke="#8B4513" stroke-width="2" />
+                    <line x1="4.93" y1="19.07" x2="6.34" y2="17.66" stroke="#8B4513" stroke-width="2" />
+                    <line x1="17.66" y1="6.34" x2="19.07" y2="4.93" stroke="#8B4513" stroke-width="2" />
+                </svg>
+                <div class="american-flag"></div>
+                <svg class="wheel-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="#8B4513" stroke-width="2" />
+                    <circle cx="12" cy="12" r="2" fill="#8B4513" />
+                    <line x1="12" y1="2" x2="12" y2="4" stroke="#8B4513" stroke-width="2" />
+                    <line x1="12" y1="20" x2="12" y2="22" stroke="#8B4513" stroke-width="2" />
+                    <line x1="2" y1="12" x2="4" y2="12" stroke="#8B4513" stroke-width="2" />
+                    <line x1="20" y1="12" x2="22" y2="12" stroke="#8B4513" stroke-width="2" />
+                    <line x1="4.93" y1="4.93" x2="6.34" y2="6.34" stroke="#8B4513" stroke-width="2" />
+                    <line x1="17.66" y1="17.66" x2="19.07" y2="19.07" stroke="#8B4513" stroke-width="2" />
+                    <line x1="4.93" y1="19.07" x2="6.34" y2="17.66" stroke="#8B4513" stroke-width="2" />
+                    <line x1="17.66" y1="6.34" x2="19.07" y2="4.93" stroke="#8B4513" stroke-width="2" />
+                </svg>
+            </div>
+        </header>
+
+        <div class="image-container">
+            <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="background-color: #f8f3e6; width: 100%; height: auto;">
+                <rect x="150" y="220" width="500" height="120" fill="#8B4513" stroke="#000" stroke-width="2"/>
+                <rect x="150" y="160" width="500" height="60" fill="#A0522D" stroke="#000" stroke-width="2"/>
+                <path d="M150,160 Q400,90 650,160" fill="none" stroke="#000" stroke-width="2"/>
+                <path d="M150,160 Q400,110 650,160" fill="#DEB887" stroke="#000" stroke-width="2"/>
+                <circle cx="250" cy="340" r="40" fill="#8B4513" stroke="#000" stroke-width="3"/>
+                <circle cx="250" cy="340" r="30" fill="none" stroke="#000" stroke-width="2"/>
+                <circle cx="250" cy="340" r="15" fill="#5D4037"/>
+                <circle cx="250" cy="340" r="5" fill="#000"/>
+                <line x1="250" y1="300" x2="250" y2="380" stroke="#000" stroke-width="2"/>
+                <line x1="210" y1="340" x2="290" y2="340" stroke="#000" stroke-width="2"/>
+                <line x1="220" y1="310" x2="280" y2="370" stroke="#000" stroke-width="2"/>
+                <line x1="220" y1="370" x2="280" y2="310" stroke="#000" stroke-width="2"/>
+                <circle cx="550" cy="340" r="40" fill="#8B4513" stroke="#000" stroke-width="3"/>
+                <circle cx="550" cy="340" r="30" fill="none" stroke="#000" stroke-width="2"/>
+                <circle cx="550" cy="340" r="15" fill="#5D4037"/>
+                <circle cx="550" cy="340" r="5" fill="#000"/>
+                <line x1="550" y1="300" x2="550" y2="380" stroke="#000" stroke-width="2"/>
+                <line x1="510" y1="340" x2="590" y2="340" stroke="#000" stroke-width="2"/>
+                <line x1="520" y1="310" x2="580" y2="370" stroke="#000" stroke-width="2"/>
+                <line x1="520" y1="370" x2="580" y2="310" stroke="#000" stroke-width="2"/>
+                <rect x="200" y="180" width="70" height="40" fill="#5D4037" stroke="#000"/>
+                <rect x="300" y="180" width="70" height="40" fill="#5D4037" stroke="#000"/>
+                <rect x="400" y="180" width="70" height="40" fill="#5D4037" stroke="#000"/>
+                <rect x="500" y="180" width="70" height="40" fill="#5D4037" stroke="#000"/>
+                <line x1="150" y1="220" x2="100" y2="300" stroke="#8B4513" stroke-width="5"/>
+                <line x1="100" y1="300" x2="75" y2="320" stroke="#8B4513" stroke-width="5"/>
+                <text x="400" y="70" font-family="'Playfair Display', serif" font-size="24" text-anchor="middle" fill="#8B4513">Ameriški diližans</text>
+                <text x="400" y="95" font-family="'Source Sans Pro', sans-serif" font-size="16" text-anchor="middle" fill="#5D4037">Legenda divjega zahoda</text>
+            </svg>
+        </div>
+
+        <div class="section">
+            <p class="text-lg">
+                Ta voz pred vami predstavlja eno najbolj prepoznavnih podob 19. stoletja v Severni Ameriki – <span class="highlight-text">ameriški diližans</span> (angl. stagecoach). Bil je več kot le prevozno sredstvo: diližans je simbol povezovanja, poguma in pionirstva, ki je zaznamoval obdobje osvajanja zahoda.
+            </p>
+            <p class="mt-3">
+                Uporabljali so ga za prevoz potnikov, pošte, denarja in vrednostnih pošiljk. Vozil je po natančno določenih poteh – t. i. <span class="highlight-text">stage routes</span>, kjer so vsakih nekaj ur konje zamenjali na t. i. postajah (stations). Tehnično dovršen in robusten, z močnimi kolesi in vzmetenjem z jermeni, je omogočal dokaj udobno vožnjo tudi po prašnih, blatnih ali skalnatih poteh.
+            </p>
+        </div>
+
+        <div class="wild-west-divider">
+            <span class="icon"><i class="fas fa-star"></i></span>
+        </div>
+
+        <div class="section">
+            <h2 class="text-2xl mb-3 animated-underline active">Zgodovinsko ozadje</h2>
+            <p>
+                Prvi diližansi so se pojavili že v 18. stoletju, a vrhunec uporabe so dosegli v času zlate mrzlice, kavbojskih časov in širjenja železnice (<span class="highlight-text">1840–1880</span>). Najbolj znana ameriška prevozniška družba je bila <span class="highlight-text">Wells Fargo</span>, katere rdeče in rumene kočije so postale legendarne.
+            </p>
+            <p class="mt-3">
+                Vožnja z diližansom ni bila le draga, ampak tudi nevarna. Potnike so ogrožali razbojniki, Indijanci, vremenske razmere in utrujenost. V vsaki diližanski ekipi je bil voznik (<span class="italic">»driver«</span>) in oborožen spremljevalec (<span class="italic">»shotgun messenger«</span>), ki je sedel spredaj z dvocevko v naročju – od tod tudi izraz <span class="highlight-text">»ride shotgun«</span>.
+            </p>
+        </div>
+
+        <div class="fact-box">
+            <p>
+                Diližans je lahko sprejel do 9 potnikov: 3 spredaj, 3 na sredini in 3 zadaj. V notranjosti ni bilo prostora za prtljago – kovčki so bili privezani zgoraj ali zadaj. Zaradi omejenega prostora in tresenja je bila pot pogosto neudobna, zato so družbe izdale celo uradna <span class="highlight-text">"pravila vedenja"</span> za potnike – na primer: <span class="italic">»Ne govorite o politiki, ker to povzroča pretepe.«</span> ali <span class="italic">»Ne kašljajte drugim v obraz.«</span>
+            </p>
+        </div>
+
+        <div class="wild-west-divider">
+            <span class="icon"><i class="fas fa-horse"></i></span>
+        </div>
+
+        <div class="section">
+            <h2 class="text-2xl mb-3 animated-underline active">Tehnične značilnosti</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <p>
+                        Diližans je bil izdelan iz najboljšega lesa, običajno hrasta ali jesena, z železnimi ojačitvami. Temeljna konstrukcijska značilnost je bila "thorough brace" – poseben sistem vzmetenja z usnjenimi jermeni, ki je deloval kot primitiven, a učinkovit blažilec udarcev.
+                    </p>
+                    <p class="mt-3">
+                        Notranja oprema je bila prilagojena dolgim potovanjem – od posebnega oblazinjenja do okenc z usnjenimi zavesami. Zunanjost je bila pogosto okrašena z rezbarijami, poslikavami in železnimi detajli.
+                    </p>
+                </div>
+                <div>
+                    <ul class="space-y-2">
+                        <li class="list-item">Teža: približno 1 tono</li>
+                        <li class="list-item">Dolžina: 4,5–5 metrov</li>
+                        <li class="list-item">Potovalna hitrost: 8–16 km/h</li>
+                        <li class="list-item">Dnevna razdalja: 60–120 km</li>
+                        <li class="list-item">Število konj v vpregi: 4–6</li>
+                        <li class="list-item">Kapaciteta potnikov: 9 + 2 na strehi</li>
+                        <li class="list-item">Življenjska doba vozila: 5–8 let (pri redni uporabi)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend-box">
+            <h2 class="text-2xl mb-3">Wells Fargo: Legenda pošte in transporta</h2>
+            <p class="italic text-gray-700">
+                Marca 1852 sta Henry Wells in William Fargo v New Yorku ustanovila podjetje, ki je kasneje postalo sinonim za zanesljiv prevoz na Divjem zahodu. Prvič so svoje diližanse poslali na pot leta 1866, ko so prevzeli transportno podjetje Butterfield Overland. Njihove kočije, prepoznavne po rdeči in rumeni barvi, so postale legenda, saj so pogosto prevažale milijonske vrednosti zlata iz rudnikov v Kaliforniji.
+            </p>
+            <p class="italic text-gray-700 mt-3">
+                Voznik Wells Fargo diližansa je bil zelo spoštovan poklic. Sloveli so kot mojstri upravljanja s konji, ki so znali voziti v vseh vremenskih razmerah. Legendarni voznik John Butterfield je nekoč izjavil: <span class="italic">"Ne obstajajo slabe poti ali slabo vreme – le slabi vozniki."</span>
+            </p>
+        </div>
+
+        <div class="wild-west-divider">
+            <span class="icon"><i class="fas fa-badge-sheriff"></i></span>
+        </div>
+
+        <div class="section">
+            <h2 class="text-2xl mb-3 animated-underline active">Replika v muzeju</h2>
+            <p>
+                Voz, ki ga vidite v naši zbirki, je rekonstrukcija ameriškega diližansa iz okoli leta 1860, izdelana po ohranjenih načrtih in ilustracijah. Njegova oblika z zaobljenim platnenim strešnim delom, stranskimi vrati in velikimi kolesi pričara avtentično vzdušje ameriškega divjega zahoda.
+            </p>
+            <p class="mt-3">
+                Posebnost naše replike je v tem, da združuje elemente dveh najbolj priljubljenih modelov tistega časa: 
+            </p>
+            <ul class="mt-2 space-y-2">
+                <li class="list-item"><span class="font-bold">Concord Coach</span> (izdelovalec: Abbott-Downing Company) – znan po zaobljeni obliki in rdečem okrasju</li>
+                <li class="list-item"><span class="font-bold">Celerity Wagon</span> – lažja, hitrejša različica, priljubljena na zahodnih poteh</li>
+            </ul>
+            <p class="mt-3">
+                Vsi materiali in tehnike izdelave sledijo zgodovinskim virom, vključno z ročno kovanimi železnimi deli in tradicionalnim postopkom obdelave lesa.
+            </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <h2 class="text-2xl mb-3 animated-underline active">Vloga v ameriški kulturi</h2>
+            <p>
+                Diližans ni bil le praktično prevozno sredstvo, ampak je postal pomemben del ameriške kulturne identitete. Njegovi simbolni pomeni so številni:
+            </p>
+            <ul class="mt-2 space-y-2">
+                <li class="list-item"><span class="highlight-text">Simbol povezovanja</span> – diližansi so povezovali oddaljene skupnosti</li>
+                <li class="list-item"><span class="highlight-text">Simbol napredka</span> – predstavljali so organiziran transport pred železnico</li>
+                <li class="list-item"><span class="highlight-text">Simbol pustolovščine</span> – potovanje z diližansom je bilo nepredvidljivo</li>
+                <li class="list-item"><span class="highlight-text">Simbol prava in reda</span> – prevoz pošte in uradnih dokumentov</li>
+            </ul>
+            <p class="mt-3">
+                Hollywoodski vesterni so podobo diližansa kot simbola Divjega zahoda le še okrepili. Filmi kot so <span class="italic">"Stagecoach"</span> (1939) z Johnom Waynom so diližans postavili v središče ameriške kulturne mitologije.
+            </p>
+        </div>
+
+        <div class="footer text-center">
+            <p class="text-lg font-semibold float-animation">
+                Vabimo vas, da si pobliže ogledate naš muzejski primerek diližansa in si predstavljate, kako so pogumni potniki nekoč potovali po nevarnih poteh ameriškega zahoda.
+            </p>
+            <p class="mt-4 text-sm text-gray-600">
+                © 2023 Muzej transportne dediščine | Zbirka zgodovinskih prevoznih sredstev
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animations
+            AOS.init({
+                once: true,
+                mirror: false
+            });
+            
+            // Add active class to all animated underlines
+            const underlines = document.querySelectorAll('.animated-underline');
+            underlines.forEach(el => {
+                el.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDsItPV%2FuUxTcoF3WIj%2F8NlHGQ%2BJMExu0wIEBapp0NjP2TOyPOF8Rj8A5Se1WF8PW0Xp3YUNjG9x%2FioSR%2FpsQrYfKoedxYfWA7jexNtYA7RqKh6rovdRkxeJjW2LD4aLlsON6X3hMRaU%2FM4cb%2BCwGGvV%2BYiafqGbhlRwKWwe3fftMOSUQhaI8KeqOVTilO3pgX7PI3Ar1ffr4BzIlqTHxTWFw3ezSHbahjexNL436aSNdL66dSocurLn3VLjV8CjIE7HJRgsorV7UV7EnqoCytGuxeHM9RlmDtcG%2BM3xf4JEPNkEeuOMab1WnkL9n08nJTZuYA6zLllBFPb4DnTRy0maShrQhW52%2FAZtFVZOrDNpahrRi43zYj6Kmh5HGvEnElCnq49H%2Bmzqv09%2FwBJhAKfwoU78nS%2Bwv4BtutpgXdKv6kyNQRZ6FzdcyxfsR57dYUqDdWEeCFauIJ%2F%2FLZiFjiZx3n4qq93pLYVJym0FHZ7uy6sUjCZP4FT9kxnX4ZXoC9A%3D%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDsItPV/uUxTcoF3WIj/8NlHGQ+JMExu0wIEBapp0NjP2TOyPOF8Rj8A5Se1WF8PW0Xp3YUNjG9x/ioSR/psQrYfKoedxYfWA7jexNtYA7RqKh6rovdRkxeJjW2LD4aLlsON6X3hMRaU/M4cb+CwGGvV+YiafqGbhlRwKWwe3fftMOSUQhaI8KeqOVTilO3pgX7PI3Ar1ffr4BzIlqTHxTWFw3ezSHbahjexNL436aSNdL66dSocurLn3VLjV8CjIE7HJRgsorV7UV7EnqoCytGuxeHM9RlmDtcG+M3xf4JEPNkEeuOMab1WnkL9n08nJTZuYA6zLllBFPb4DnTRy0maShrQhW52/AZtFVZOrDNpahrRi43zYj6Kmh5HGvEnElCnq49H+mzqv09/wBJhAKfwoU78nS+wv4BtutpgXdKv6kyNQRZ6FzdcyxfsR57dYUqDdWEeCFauIJ//LZiFjiZx3n4qq93pLYVJym0FHZ7uy6sUjCZP4FT9kxnX4ZXoC9A==";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
