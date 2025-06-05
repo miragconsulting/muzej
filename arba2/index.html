@@ -507,52 +507,36 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize AOS animations
-            AOS.init({
-                once: false,
-                mirror: true
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          /* AOS */
+          AOS.init({ once: false, mirror: true });
+        
+          /* underline animation */
+          setTimeout(() =>
+            document.querySelectorAll('.animated-underline')
+                    .forEach(el => el.classList.add('active')), 500);
+        
+          /* list-item reveal */
+          document.querySelectorAll('.list-item')
+                  .forEach((item, i) =>
+                    setTimeout(() => item.classList.add('visible'), 800 + i * 200));
+        
+          /* ribbon */
+          setTimeout(() => document.getElementById('ribbon').classList.add('visible'), 1500);
+        
+          /* section-header highlight */
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const h2 = entry.target.querySelector('h2');
+                if (h2) h2.classList.add('active');
+              }
             });
-            
-            // Animate underlines
-            setTimeout(function() {
-                const underlines = document.querySelectorAll('.animated-underline');
-                underlines.forEach(el => {
-                    el.classList.add('active');
-                });
-            }, 500);
-            
-            // Animate list items sequentially
-            const listItems = document.querySelectorAll('.list-item');
-            listItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.add('visible');
-                }, 800 + (index * 200));
-            });
-            
-            // Show ribbon with delay
-            setTimeout(() => {
-                document.getElementById('ribbon').classList.add('visible');
-            }, 1500);
-            
-            // Animate section headers when they come into view
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const header = entry.target.querySelector('h2');
-                        if (header) {
-                            header.classList.add('active');
-                        }
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            document.querySelectorAll('.section').forEach(section => {
-                observer.observe(section);
-                }
-            });
+          }, { threshold: 0.5 });
+        
+          document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
         });
-    </script>
+        </script>
 </body>
 </html>
