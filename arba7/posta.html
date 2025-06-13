@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starinski poštni voz – legendarni sel med mesti</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Source Sans Pro', 'Segoe UI', Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f7f2;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23925f2d' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 0 40px rgba(91, 60, 17, 0.1);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, #8B4513, #D2691E, #8B4513);
+        }
+        
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #8B4513;
+            font-weight: bold;
+        }
+        
+        h1 {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .animated-underline {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            bottom: -6px;
+            left: 0;
+            background-color: #8B4513;
+            transform-origin: bottom right;
+            transition: transform 0.5s ease-out;
+            transform: scaleX(0);
+        }
+        
+        .animated-underline.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        .image-container {
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: visible;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.5s ease;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 1.2s ease-in-out;
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-left: 0px solid #CD853F;
+        }
+        
+        .section:hover {
+            border-left: 4px solid #CD853F;
+            padding-left: calc(1rem - 2px);
+            background-color: rgba(205, 133, 63, 0.05);
+        }
+        
+        .list-item {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .list-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #8B4513;
+            font-size: 1.2em;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            position: relative;
+        }
+        
+        .ornament {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            opacity: 0.2;
+        }
+        
+        .ornament.top-left {
+            top: 10px;
+            left: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7l2-7z' fill='none' stroke='%238B4513' stroke-width='2'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(-15deg);
+        }
+        
+        .ornament.top-right {
+            top: 10px;
+            right: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7l2-7z' fill='none' stroke='%238B4513' stroke-width='2'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(15deg);
+        }
+        
+        .ornament.bottom-left {
+            bottom: 10px;
+            left: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7l2-7z' fill='none' stroke='%238B4513' stroke-width='2'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(-45deg);
+        }
+        
+        .ornament.bottom-right {
+            bottom: 10px;
+            right: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7l2-7z' fill='none' stroke='%238B4513' stroke-width='2'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: rotate(45deg);
+        }
+        
+        .accent-bg {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #8B4513;
+            opacity: 0.05;
+            z-index: -1;
+        }
+        
+        .accent-bg.one {
+            top: -75px;
+            right: -75px;
+        }
+        
+        .accent-bg.two {
+            bottom: 20%;
+            left: -100px;
+            width: 200px;
+            height: 200px;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .mail-icon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 60%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            80% { transform: translateY(-5px); }
+        }
+        
+        .bell-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            animation: swing 3s ease-in-out infinite;
+        }
+        
+        @keyframes swing {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-15deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        .highlight-text {
+            position: relative;
+            display: inline-block;
+            padding: 0 4px;
+        }
+        
+        .highlight-text::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(205, 133, 63, 0.3);
+            z-index: -1;
+            transition: height 0.3s ease;
+        }
+        
+        .highlight-text:hover::before {
+            height: 100%;
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 15px;
+            background: #8B4513;
+            color: white;
+            font-size: 0.8rem;
+            transform: rotate(3deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: opacity 1s ease, transform 0.5s ease;
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #8B4513, transparent);
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: "✉";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            padding: 0 15px;
+            color: #8B4513;
+            font-size: 1.2rem;
+        }
+        
+        .legend-box {
+            border-left: 4px solid #8B4513;
+            padding: 1rem 1.5rem;
+            background-color: rgba(205, 133, 63, 0.1);
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            overflow: hidden;
+            font-style: italic;
+        }
+        
+        .legend-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%238B4513' fill-opacity='0.03' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+            z-index: -1;
+        }
+        
+        .fact-box {
+            border: 2px dashed #CD853F;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            background-color: rgba(205, 133, 63, 0.05);
+        }
+        
+        .fact-box h3 {
+            color: #8B4513;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+        }
+        
+        .postal-icon {
+            display: inline-block;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 5px;
+            color: #8B4513;
+        }
+        
+        .laurel-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 0 30px;
+        }
+        
+        .laurel-wrapper::before, .laurel-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 25px;
+            height: 50px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            transform: translateY(-50%);
+        }
+        
+        .laurel-wrapper::before {
+            left: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7l2-7z' stroke='%238B4513' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+            transform: translateY(-50%) rotate(-90deg);
+        }
+        
+        .laurel-wrapper::after {
+            right: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B4513'%3E%3Cpath d='M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7l2-7z' stroke='%238B4513' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+            transform: translateY(-50%) rotate(90deg);
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #8B4513, transparent);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #8B4513;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.3);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #8B4513;
+        }
+
+        .postal-illustration {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f4f3f0 0%, #e8e6e1 100%);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #8B4513;
+        }
+
+        .carriage-svg {
+            width: 300px;
+            height: 200px;
+        }
+
+        .postal-quote {
+            font-size: 1.1em;
+            line-height: 1.8;
+            padding: 1.5rem;
+            background: rgba(139, 69, 19, 0.05);
+            border-left: 5px solid #8B4513;
+            margin: 2rem 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .postal-quote::before {
+            content: """;
+            font-size: 3rem;
+            color: #8B4513;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: serif;
+        }
+
+        .postal-quote::after {
+            content: """;
+            font-size: 3rem;
+            color: #8B4513;
+            position: absolute;
+            bottom: -30px;
+            right: 10px;
+            font-family: serif;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                background-image: none;
+            }
+            .container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                max-width: 100%;
+            }
+            .image-container:hover img {
+                transform: none;
+            }
+            .section:hover {
+                border-left: 0;
+                padding-left: 1rem;
+                background-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-8 mb-12">
+        <div class="ornament top-left"></div>
+        <div class="ornament top-right"></div>
+        <div class="ornament bottom-left"></div>
+        <div class="ornament bottom-right"></div>
+        <div class="accent-bg one"></div>
+        <div class="accent-bg two"></div>
+        
+        <div class="ribbon" id="ribbon">Poštna dediščina</div>
+        
+        <header class="text-center mb-10 relative">
+            <h1 class="text-4xl mb-4" id="main-title">
+                <span class="animated-underline active">Starinski poštni voz</span>
+            </h1>
+            <h2 class="text-2xl mb-3 text-yellow-800 italic font-light">– legendarni sel med mesti</h2>
+            <div class="w-32 h-1 bg-yellow-800 mx-auto mb-4 float-animation"></div>
+            <div class="laurel-wrapper">
+                <i class="mail-icon fas fa-envelope"></i>
+            </div>
+        </header>
+
+        <div class="image-container">
+            <div class="postal-illustration">
+                <svg class="carriage-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Glavni del voza -->
+                    <rect x="50" y="80" width="150" height="60" rx="8" fill="#8B4513" stroke="#654321" stroke-width="2"/>
+                    
+                    <!-- Strecha -->
+                    <path d="M45 80 L125 50 L205 80 Z" fill="#654321" stroke="#4a2c17" stroke-width="2"/>
+                    
+                    <!-- Kolesa -->
+                    <circle cx="80" cy="160" r="25" fill="#4a2c17" stroke="#2d1810" stroke-width="3"/>
+                    <circle cx="170" cy="160" r="25" fill="#4a2c17" stroke="#2d1810" stroke-width="3"/>
+                    
+                    <!-- Prečke koles -->
+                    <line x1="65" y1="160" x2="95" y2="160" stroke="#2d1810" stroke-width="2"/>
+                    <line x1="80" y1="145" x2="80" y2="175" stroke="#2d1810" stroke-width="2"/>
+                    <line x1="155" y1="160" x2="185" y2="160" stroke="#2d1810" stroke-width="2"/>
+                    <line x1="170" y1="145" x2="170" y2="175" stroke="#2d1810" stroke-width="2"/>
+                    
+                    <!-- Okna -->
+                    <rect x="70" y="95" width="25" height="20" rx="3" fill="#87CEEB" stroke="#654321" stroke-width="1"/>
+                    <rect x="155" y="95" width="25" height="20" rx="3" fill="#87CEEB" stroke="#654321" stroke-width="1"/>
+                    
+                    <!-- Vrata -->
+                    <rect x="110" y="90" width="30" height="45" rx="3" fill="#654321" stroke="#4a2c17" stroke-width="2"/>
+                    <circle cx="135" cy="112" r="2" fill="#D2691E"/>
+                    
+                    <!-- Poštni znak -->
+                    <rect x="60" y="100" width="15" height="12" fill="#D2691E"/>
+                    <text x="67" y="108" font-family="serif" font-size="8" fill="white" text-anchor="middle">P</text>
+                    
+                    <!-- Konji (stiliziran) -->
+                    <ellipse cx="25" cy="130" rx="15" ry="20" fill="#8B4513"/>
+                    <circle cx="25" cy="115" r="8" fill="#8B4513"/>
+                    <line x1="40" y1="125" x2="50" y2="125" stroke="#654321" stroke-width="3"/>
+                    
+                    <!-- Zvonček -->
+                    <circle cx="125" cy="70" r="4" fill="#FFD700" stroke="#DAA520" stroke-width="1"/>
+                    <line x1="125" y1="74" x2="125" y2="78" stroke="#DAA520" stroke-width="1"/>
+                    
+                    <!-- Poštar -->
+                    <circle cx="125" cy="85" r="8" fill="#FDBCB4"/>
+                    <rect x="120" y="93" width="10" height="15" fill="#654321"/>
+                    <rect x="122" y="88" width="6" height="8" fill="#8B4513"/>
+                    
+                    <!-- Dežne kaplje -->
+                    <circle cx="40" cy="30" r="2" fill="#87CEEB" opacity="0.7"/>
+                    <circle cx="180" cy="25" r="2" fill="#87CEEB" opacity="0.7"/>
+                    <circle cx="250" cy="35" r="2" fill="#87CEEB" opacity="0.7"/>
+                    <circle cx="90" cy="20" r="2" fill="#87CEEB" opacity="0.7"/>
+                </svg>
+            </div>
+            <p class="italic text-lg text-gray-700 mt-4">Ilustracija: Starinski poštni voz iz 19. stoletja z značilno poštno oznako, zvončkom in robustno konstrukcijo za prevoz pošte po avstroogrskih poteh</p>
+        </div>
+
+        <div class="section">
+            <p class="text-lg">
+                V času, ko še ni bilo telefonov, elektronske pošte in hitrih vlakov, je bil <span class="highlight-text">poštni voz</span> edina vez med mesti, vasmi in svetom. Poštni vozovi so pogumno prečkali gore, reke in blatne kolovoze, da bi ljudem prinesli novice, pisma in včasih tudi upanje.
+            </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="legend-box">
+            <h2 class="text-2xl mb-3 animated-underline active">Legenda o poštarju Lovru in nevihti nad Planinskim poljem</h2>
+            <p class="text-gray-700">
+                Leta <span class="highlight-text">1812</span> je poštar Lovro, mož iz Vipavske doline, peljal voz z zapečatenimi pisemskimi vrečami iz Ljubljane proti Trstu. Na poti ga je ujela silovita nevihta nad Planinskim poljem, kjer je reka Unica pogosto poplavila pot.
+            </p>
+            <p class="text-gray-700 mt-3">
+                Ko je voda narasla in konji niso mogli naprej, se je Lovro odločil – pošto bo rešil peš. V dežju in blatu je na hrbtu nesel vrečo z najpomembnejšimi pismi, med katerimi je bilo tudi pismo o napovedi rojstva prestolonaslednika.
+            </p>
+            <p class="text-gray-700 mt-3">
+                Po sedmih urah hoje je prispel do naslednje poštne postaje – premočen, a zvest službi. Od takrat dalje so rekli: <span class="highlight-text">"Tako zvest kot poštar Lovro."</span>
+            </p>
+        </div>
+
+        <div class="postal-quote">
+            Niti sneg niti dež niti vročina niti mrak noči ne bodo ustavili teh hitrih glasnikov pri opravljanju njihovih nalog.
+            <div class="text-right mt-2 text-sm">– Stara poštna prisega</div>
+        </div>
+
+        <div class="section">
+            <h2 class="text-2xl mb-3 animated-underline active">Konstrukcija in oprema poštnih vozov</h2>
+            <p>
+                Poštni vozovi so bili posebej prilagojeni svojemu namenu. Imeli so <span class="highlight-text">zaprt tovorni prostor</span> za varno shranjevanje poštnih pošiljk, odporno konstrukcijo za dolga potovanja in posebno <i class="bell-icon fas fa-bell"></i> <span class="highlight-text">zvonček</span>, ki je najavil prihod pošte v vas.
+            </p>
+            <p class="mt-3">
+                Vozovi so bili opremljeni z železnimi okovi, ki so ščitili najpomembnejše dele pred obrabo, in z vodoodpornimi pokrovi, ki so varovali pošto pred vremenom. Poštar je imel pri sebi pištolo in sablje za obrambo pred razbojniki.
+            </p>
+        </div>
+
+        <div class="fact-box">
+            <h3><span class="postal-icon">✉</span> Zanimivosti o poštnih vozovih</h3>
+            <div class="list-item">Vozovi so bili izdelani iz hrastovega in bukovega lesa, s kovinskimi obrobami na kolesih, da so prenesli težke razmere na poti.</div>
+            <div class="list-item">Pogosto so jih spremljali oboroženi stražarji, saj so vozili tudi dragocenosti, zlate kovance ali uradne listine.</div>
+            <div class="list-item">Na vsakih 25–30 kilometrov so konje zamenjali na poštnih postajah, kjer so se vozniki spočili in nahranili.</div>
+            <div class="list-item">V Avstro-Ogrski monarhiji so bili vozovi del državnega sistema, enako pomembni kot vojska ali davkarija.</div>
+            <div class="list-item">Zvonček na vozovem loku je opozarjal prebivalce vasi, da prihaja pošta – in prinesel vznemirjenje, še preden je voz obstal.</div>
+        </div>
+
+        <div class="section">
+            <h2 class="text-2xl mb-3 animated-underline active">Poštni sistem v Avstro-Ogrski</h2>
+            <p>
+                Habsburška monarhija je razvila enega najbolj učinkovitih poštnih sistemov v Evropi. Poštne linije so povezovale vse večje kraje in mesta, redni vozni redi pa so zagotavljali zanesljivo dostavo pošte.
+            </p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">1490</span>
+                    <p>Ustanovitev poštne službe Taxis za Habsburžane</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1722</span>
+                    <p>Prve poštne linije preko slovenskega ozemlja</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1806</span>
+                    <p>Ustanovitev rednih poštnih povezav Ljubljana–Trst</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1840-1860</span>
+                    <p>Vrhunec poštnih vozov pred prihodom železnice</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">1857</span>
+                    <p>Prva železniška proga zmanjša potrebo po poštnih vozovih</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="text-2xl mb-3 animated-underline active">Poštne postaje in gostišča</h2>
+            <p>
+                Vzdolž glavnih poštnih poti so stala gostišča z <span class="highlight-text">izobešenimi poštnimi rogovi</span> – znakom, da sprejemajo poštne vozove. Tu so zamenjali konje, vozniki so se okrepčali in odpočili, potniki pa so lahko kupili vozovnico za nadaljevanje poti.
+            </p>
+            <p class="mt-3">
+                Ena najslavnejših poštnih postaj na našem ozemlju je bila na <span class="highlight-text">Vrhniki</span>, kjer se je poštna pot iz Ljubljane razdelila proti Trstu in Reki. Druga pomembna postaja je bila v <span class="highlight-text">Postojni</span>, kjer so se vozovi pripravili na zahtevno pot čez Kras.
+            </p>
+        </div>
+
+        <div class="fact-box">
+            <h3>Življenje poštarja</h3>
+            <p>
+                Poštar je bil spoštovana oseba, ki je prevzemala odgovornost za varno dostavo pošte. Moral je znati brati in pisati, imeti morał dobro knowledge lokalnib poti in biti fizično krepak za dolge vožnje v vseh vremenskih razmerah.
+            </p>
+            <div class="mt-3">
+                <strong>Oprema poštarja:</strong>
+                <div class="list-item">Poštni rog za najavljanje prihoda</div>
+                <div class="list-item">Pištola za obrambo pred razbojniki</div>
+                <div class="list-item">Bič za spodbujanje konj</div>
+                <div class="list-item">Vodoodporna oblačila in topla odeja</div>
+                <div class="list-item">Svetilka za nočne vožnje</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="text-2xl mb-3 animated-underline active">Konec ere poštnih vozov</h2>
+            <p>
+                Z razvojem železniškega omrežja v drugi polovici 19. stoletja se je vloga poštnih vozov postopoma zmanjšala. <span class="highlight-text">Prva železniška proga</span> na našem ozemlju, odprta leta 1857 med Ljubljano in Dunajem, je dramatično skrajšala čas prevoza pošte.
+            </p>
+            <p class="mt-3">
+                Vendar pa so poštni vozovi še naprej služili v gorskih predelih in na odročnih področjih, kjer železnica ni dosegla. Zadnji redni poštni voz v Sloveniji je obratoval do začetka 20. stoletja.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2 class="text-2xl mb-3 animated-underline active">Uporaba v današnjih časih</h2>
+            <p>
+                Danes so starinski poštni vozovi redkost – ohranjeni le v muzejih in kot del turističnih prireditev. Vendar njihova zgodba živi – kot simbol <span class="highlight-text">povezovanja, zanesljivosti in človeške vztrajnosti</span>.
+            </p>
+            <p class="mt-3">
+                Nekatere turistične organizacije organizirajo nostalgične vožnje s poštnimi vozovi, kjer lahko obiskovalci doživijo, kako je bilo nekoč potovati po naših krajih. Te prireditve so posebej priljubljene med otroki, ki z navdušenjem poslušajo zgodbe o poštarjih in njihovih pustolovščinah.
+            </p>
+        </div>
+
+        <div class="fact-box">
+            <h3>Dediščina poštnih vozov danes</h3>
+            <p>
+                Čeprav so poštni vozovi izginili s cest, njihova dediščina še vedno živi:
+            </p>
+            <div class="list-item">Številna gostišča še vedno nosijo naziv "Pri poštarju" ali imajo poštni rog v grbu</div>
+            <div class="list-item">Muzeji ohranjajo rekonstrukcije poštnih vozov in poštarske opreme</div>
+            <div class="list-item">Poštni muzej v Ljubljani hrani bogato zbirko predmetov iz časa poštnih vozov</div>
+            <div class="list-item">Folklorne skupine včasih nastopajo v poštarskih kostumih</div>
+            <div class="list-item">Turistične prireditve z voznji s poštnimi vozovi vzbujalajo nostalgijo</div>
+        </div>
+
+        <div class="footer text-center">
+            <p class="text-lg font-semibold float-animation">
+                Spominjajmo se teh pogumnih mož, ki so ne glede na vreme in nevarnosti poskrbeli, da so se novice, čustva in upanje prenesli iz kraja v kraj, povezujoč srca preko kilometrov in časov.
+            </p>
+            <p class="mt-4 text-sm text-gray-600">
+                © 2023 Muzej poštne zgodovine Slovenije • Ohranjanje spomina na poštno dediščino
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add active class to all animated underlines when page loads
+            const underlines = document.querySelectorAll('.animated-underline');
+            underlines.forEach(el => {
+                setTimeout(() => {
+                    el.classList.add('active');
+                }, 300);
+            });
+            
+            // Show ribbon
+            const ribbon = document.getElementById('ribbon');
+            if (ribbon) {
+                setTimeout(() => {
+                    ribbon.style.opacity = '1';
+                }, 800);
+            }
+
+            // Add some interactivity to the bell icon
+            const bellIcons = document.querySelectorAll('.bell-icon');
+            bellIcons.forEach(bell => {
+                bell.addEventListener('click', function() {
+                    this.style.animation = 'none';
+                    setTimeout(() => {
+                        this.style.animation = 'swing 1s ease-in-out';
+                    }, 10);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
